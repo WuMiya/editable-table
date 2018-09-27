@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ColorPickerModule } from './color-picker/color-picker.module';
 import { NewtableComponent } from './newtable/newtable.component';
+import { EditSectionComponent } from './edit-section/edit-section.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewtableComponent
+    NewtableComponent,
+    EditSectionComponent
   ],
   imports: [
     BrowserModule,

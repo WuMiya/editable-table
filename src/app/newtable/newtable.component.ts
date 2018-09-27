@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-newtable',
@@ -7,18 +6,34 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./newtable.component.scss']
 })
 export class NewtableComponent implements OnInit {
+  // Sortable table
+  private sorted = false;
 
-  data: any[];
+  @Input() data=[];
+  @Input() headers=[];
 
-  constructor(private http: HttpClient) {
-    this.http.get('http://localhost:4200/assets/Countries.json')
-      .subscribe((data: any[]) => {
-          this.data = data;
-          console.log(data);
-      });
+  constructor() {
+    console.log(this.headers);
   }
 
   ngOnInit() {
+  }
+
+  sortBy(header: any): void {
+    // if (header.sortable) {
+      let by: string = header.field;
+
+      this.data.sort((a: any, b: any) => {
+        if (a[by] < b[by]) {
+            return this.sorted ? 1 : -1;
+        }
+        if (a[by] > b[by]) {
+            return this.sorted ? -1 : 1;
+        }
+        return 0;
+      });
+      this.sorted = !this.sorted;
+    //}
   }
 
 }
