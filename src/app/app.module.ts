@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ColorPickerModule } from './color-picker/color-picker.module';
 import { NewtableComponent } from './newtable/newtable.component';
 import { EditSectionComponent } from './edit-section/edit-section.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { EditSectionComponent } from './edit-section/edit-section.component';
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    ColorPickerModule
+    ColorPickerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

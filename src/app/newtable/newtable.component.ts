@@ -8,19 +8,19 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 export class NewtableComponent implements OnInit {
   // Sortable table
   private sorted = false;
+  editField: string;
 
   @Input() data=[];
   @Input() headers=[];
 
   constructor() {
-    console.log(this.headers);
+    
   }
 
   ngOnInit() {
   }
 
   sortBy(header: any): void {
-    // if (header.sortable) {
       let by: string = header.field;
 
       this.data.sort((a: any, b: any) => {
@@ -33,7 +33,16 @@ export class NewtableComponent implements OnInit {
         return 0;
       });
       this.sorted = !this.sorted;
-    //}
+  }
+
+  editValue(id: number, property: string, $event: any) {
+    this.editField = $event.target.textContent;
+    if (this.editField !="") {
+      this.data[id][property] = this.editField;
+    } 
+    else {
+      alert("This field can not be empty.");
+    }
   }
 
 }

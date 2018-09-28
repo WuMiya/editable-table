@@ -1,3 +1,4 @@
+<div class="col-8 display-section">
 <table class="table">
   <thead class="black white-text">
     <tr>
@@ -6,13 +7,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of data">
+    <tr *ngFor="let d of data; let id = index" [style.background]="color" >
       <th scope="row">1</th>
-      <td>{{d.title}}</td>
-      <td>{{d.desc}}</td>
-      <td>{{d.budget}}</td>
-      <td>{{d.total_DIN_saved_kgs}}</td>
+      <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
+      <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
+      <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
+      <td contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
     </tr>
   </tbody>
 </table>
 
+<input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents" (recentChooseChanged)="update($event)"/>
+</div>
