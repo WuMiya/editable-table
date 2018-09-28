@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
+import { ColorPickerComponent} from 'src/app/color-picker/color-picker.component';
 
 @Component({
   selector: 'app-newtable',
@@ -7,8 +8,10 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 })
 export class NewtableComponent implements OnInit {
   // Sortable table
-  private sorted = false;
-  editField: string;
+  private sorted: boolean = false;
+  private editField: string = "";
+  private width: number;
+  private height: number;
 
   @Input() data=[];
   @Input() headers=[];
@@ -19,6 +22,13 @@ export class NewtableComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  // for color-picker
+  color: string="#ffecee";
+  recents: string[] = [this.color];
+
+  cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A", 
+      "#000000","#4A4A4A", "#ffffff", "#9B9B9B"];
 
   sortBy(header: any): void {
       let by: string = header.field;
@@ -44,5 +54,16 @@ export class NewtableComponent implements OnInit {
       alert("This field can not be empty.");
     }
   }
+
+  updateWidth($event) {
+    this.width = $event.target.value.parseInt();
+    
+  }
+
+  updateHeight($event) {
+    this.height = $event.target.value.parseInt();
+    
+  }
+  
 
 }

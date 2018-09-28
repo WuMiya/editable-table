@@ -1,21 +1,34 @@
-<div class="col-8 display-section">
-<table class="table">
-  <thead class="black white-text">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col" *ngFor="let header of headers">{{header.label}}<mdb-icon *ngIf="header.sortable" icon="sort" (click)="sortBy(header)"></mdb-icon></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of data; let id = index" [style.background]="color" >
-      <th scope="row">1</th>
-      <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
-      <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
-      <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
-      <td contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents" (recentChooseChanged)="update($event)"/>
+<div class="col-12 display-section" [style.width.px]="width" [style.height.px]="height">
+  <table class="table">
+    <thead class="black white-text">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" *ngFor="let header of headers">{{header.label}}<mdb-icon *ngIf="header.sortable" icon="sort" (click)="sortBy(header)"></mdb-icon></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data; let id = index" [style.background]="color" >
+        <th scope="row">1</th>
+        <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
+        <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
+        <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
+        <td contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+<div class="edit"> 
+  <p>
+    Alternate background
+    <input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+  </p>
+  <p id="width">
+    Width (px) 
+    <input value="width" [(ngModel)]="width" (keyup)="updateWidth($event)">
+  </p>
+  <p>
+    Hight (px)
+    <input value="height" [(ngModel)]="height" (keyup)="updateHeight($event)">
+  </p>
+</div>
+<!-- [style.width.px]="100" -->
