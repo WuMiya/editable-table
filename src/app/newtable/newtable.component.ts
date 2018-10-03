@@ -10,8 +10,8 @@ export class NewtableComponent implements OnInit {
   // Sortable table
   private sorted: boolean = false;
   private editField: string = "";
-  private width: number;
-  private height: number;
+  private width: number=1000;
+  private height: number=600;
 
   @Input() data=[];
   @Input() headers=[];
@@ -56,13 +56,17 @@ export class NewtableComponent implements OnInit {
   }
 
   updateWidth($event) {
-    this.width = $event.target.value.parseInt();
-    
+    this.width = parseInt($event.target.value, 10);
+    if(this.width > 1600) {
+      this.width = 1600;
+    }
   }
 
   updateHeight($event) {
-    this.height = $event.target.value.parseInt();
-    
+    this.height = parseInt($event.target.value, 10);
+    if(this.height > 2600){
+      this.height = 2600;
+    }
   }
   
 
