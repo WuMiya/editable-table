@@ -1,14 +1,25 @@
 <div class="display-section" [style.width.px]="width" [style.height.px]="height">
   <table class="table" [ngStyle]="{'text-align':textAlignment}">
-    <thead class="black white-text">
+    <thead [ngStyle]="{'color':headerTxtColor,'background-color':headerBGColor}">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col" *ngFor="let header of headers">{{header.label}}<mdb-icon *ngIf="header.sortable" icon="sort" (click)="sortBy(header)"></mdb-icon></th>
+        <th scope="col">{{id}}</th>
+        <th scope="col" 
+        *ngFor="let header of headers" 
+        [ngStyle]="{'font-size':'20px'}"
+        >
+        {{header.label}}
+          <mdb-icon 
+            *ngIf="header.sortable" 
+            icon="sort" 
+            (click)="sortBy(header)">
+          </mdb-icon>
+        </th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let d of data; let id = index" [style.background]="color" >
-        <th scope="row">1</th>
+    <tbody [ngStyle]="{'color':tableTxtColor}" >
+      <tr *ngFor="let d of data; let id = index; let odd = odd;" 
+      [ngStyle]="{'background-color': odd ? color : alternateColor}" >
+        <th scope="row">{{id}}</th>
         <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
         <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
         <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
@@ -18,10 +29,28 @@
   </table>
 </div>
 <div class="edit"> 
+  <h3>Color</h3>
   <p>
-    Alternate background
+    Header text
+    <input [(colorPicker)]="headerTxtColor" [style.background]="headerTxtColor" [cpPresetColors]="cpPresetColors" [value]="headerTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+  </p>
+  <p>
+    Table text
+    <input [(colorPicker)]="tableTxtColor" [style.background]="tableTxtColor" [cpPresetColors]="cpPresetColors" [value]="tableTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+  </p>
+  <p>
+    Header background
+    <input [(colorPicker)]="headerBGColor" [style.background]="headerBGColor" [cpPresetColors]="cpPresetColors" [value]="headerBGColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+  </p>
+  <p>
+    Table background
     <input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
   </p>
+  <p>
+    Alternate background
+    <input [(colorPicker)]="alternateColor" [style.background]="alternateColor" [cpPresetColors]="cpPresetColors" [value]="alternateColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+  </p>
+  <h3>Page Setting</h3>
   <p>
     Page Width (px) 
     <input value="width" [(ngModel)]="width" (keyup)="updateWidth($event)">
@@ -30,9 +59,10 @@
     Page Hight (px)
     <input value="height" [(ngModel)]="height" (keyup)="updateHeight($event)">
   </p>
+  <h3>Font Setting</h3>
   <div>
-    Text alignment: 
-    <select (change)="textAlignmentHandler($event)">
+    <p>Text alignment: </p>
+    <select (change)="textAlignmentChange($event)">
       <option *ngFor="let o of options">{{o.name}}</option>
     </select>
   </div>

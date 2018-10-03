@@ -32,6 +32,10 @@ export class NewtableComponent implements OnInit {
 
   // for color-picker
   color: string="#ffecee";
+  alternateColor: string="#fff";
+  headerBGColor: string="#fff";
+  headerTxtColor: string="#222";
+  tableTxtColor: string="#333";
   recents: string[] = [this.color];
 
   cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A", 
@@ -80,7 +84,7 @@ export class NewtableComponent implements OnInit {
   }
 
   // handle text alignment
-  textAlignmentHandler (event: any) {
+  textAlignmentChange (event: any) {
     this.textAlignment = event.target.value;
   }
 
