@@ -1,5 +1,5 @@
-<div class="col-12 display-section" [style.width.px]="width" [style.height.px]="height">
-  <table class="table">
+<div class="display-section" [style.width.px]="width" [style.height.px]="height">
+  <table class="table" [ngStyle]="{'text-align':textAlignment}">
     <thead class="black white-text">
       <tr>
         <th scope="col">#</th>
@@ -22,13 +22,18 @@
     Alternate background
     <input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
   </p>
-  <p id="width">
-    Width (px) 
+  <p>
+    Page Width (px) 
     <input value="width" [(ngModel)]="width" (keyup)="updateWidth($event)">
   </p>
   <p>
-    Hight (px)
+    Page Hight (px)
     <input value="height" [(ngModel)]="height" (keyup)="updateHeight($event)">
   </p>
+  <div>
+    Text alignment: 
+    <select (change)="textAlignmentHandler($event)">
+      <option *ngFor="let o of options">{{o.name}}</option>
+    </select>
+  </div>
 </div>
-<!-- [style.width.px]="100" -->

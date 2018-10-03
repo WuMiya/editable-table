@@ -11,7 +11,14 @@ export class NewtableComponent implements OnInit {
   private sorted: boolean = false;
   private editField: string = "";
   private width: number=1000;
-  private height: number=600;
+  private height: number=480;
+  private textAlignment: string="";
+
+  options = [
+    { name: "Left", value: "left" },
+    { name: "Center", value: "center" },
+    { name: "Right", value: "right" }
+  ]
 
   @Input() data=[];
   @Input() headers=[];
@@ -45,6 +52,7 @@ export class NewtableComponent implements OnInit {
       this.sorted = !this.sorted;
   }
 
+  // edit table field
   editValue(id: number, property: string, $event: any) {
     this.editField = $event.target.textContent;
     if (this.editField !="") {
@@ -55,6 +63,7 @@ export class NewtableComponent implements OnInit {
     }
   }
 
+  // edit width of display section
   updateWidth($event) {
     this.width = parseInt($event.target.value, 10);
     if(this.width > 1600) {
@@ -62,12 +71,17 @@ export class NewtableComponent implements OnInit {
     }
   }
 
+  // edit height of display section
   updateHeight($event) {
     this.height = parseInt($event.target.value, 10);
     if(this.height > 2600){
       this.height = 2600;
     }
   }
-  
+
+  // handle text alignment
+  textAlignmentHandler (event: any) {
+    this.textAlignment = event.target.value;
+  }
 
 }
