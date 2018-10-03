@@ -5,8 +5,7 @@
         <th scope="col">{{id}}</th>
         <th scope="col" 
         *ngFor="let header of headers" 
-        [ngStyle]="{'font-size':'20px'}"
-        >
+        [ngStyle]="{'font-size':headerFontSize+'px'}">
         {{header.label}}
           <mdb-icon 
             *ngIf="header.sortable" 
@@ -66,4 +65,6 @@
       <option *ngFor="let o of options">{{o.name}}</option>
     </select>
   </div>
+  <p>Header Font size: </p>
+  <input value="headerFontSize" [(ngModel)]="headerFontSize" (keyup)="updateHeaderFontSize($event)">
 </div>

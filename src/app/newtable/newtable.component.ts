@@ -13,6 +13,7 @@ export class NewtableComponent implements OnInit {
   private width: number=1000;
   private height: number=480;
   private textAlignment: string="";
+  private headerFontSize: number=14;
 
   options = [
     { name: "Left", value: "left" },
@@ -86,6 +87,13 @@ export class NewtableComponent implements OnInit {
   // handle text alignment
   textAlignmentChange (event: any) {
     this.textAlignment = event.target.value;
+  }
+
+  updateHeaderFontSize($event) {
+    this.headerFontSize = parseInt($event.target.value, 10);
+    if(this.headerFontSize > 78){
+      this.headerFontSize = 78;
+    }
   }
 
 }
