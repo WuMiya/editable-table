@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NewtableComponent } from './newtable/newtable.component';
 
 @Component({
   selector: 'app-root',

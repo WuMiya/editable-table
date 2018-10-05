@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as Handsontable from 'handsontable';
+
 @Component({
   selector: 'app-newtable',
   templateUrl: './newtable.component.html',
@@ -18,7 +18,8 @@ export class NewtableComponent implements OnInit {
   private headerAlignment: string="Left";
   degree: string="";
   thHeight: number;
-
+  downloadabl:boolean = false;
+ 
   // for color setting
   color: string="#ffecee";
   alternateColor: string="#fff";
@@ -55,18 +56,18 @@ export class NewtableComponent implements OnInit {
 
   // sortable table
   sortBy(header: any): void {
-      let by: string = header.field;
+    let by: string = header.field;
 
-      this.data.sort((a: any, b: any) => {
-        if (a[by] < b[by]) {
-            return this.sorted ? 1 : -1;
-        }
-        if (a[by] > b[by]) {
-            return this.sorted ? -1 : 1;
-        }
-        return 0;
-      });
-      this.sorted = !this.sorted;
+    this.data.sort((a: any, b: any) => {
+      if (a[by] < b[by]) {
+          return this.sorted ? 1 : -1;
+      }
+      if (a[by] > b[by]) {
+          return this.sorted ? -1 : 1;
+      }
+      return 0;
+    });
+    this.sorted = !this.sorted;
   }
 
   // edit table field
@@ -74,9 +75,6 @@ export class NewtableComponent implements OnInit {
     this.editField = $event.target.textContent;
     if (this.editField !="") {
       this.data[id][property] = this.editField;
-    } 
-    else {
-      alert("This field can not be empty.");
     }
   }
 
@@ -134,5 +132,5 @@ export class NewtableComponent implements OnInit {
     this.degree = '(-45deg)';
     this.thHeight = 150;
   }
-  
+
 }
