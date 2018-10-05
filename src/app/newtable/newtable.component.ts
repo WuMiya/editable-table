@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import * as Handsontable from 'handsontable';
 @Component({
   selector: 'app-newtable',
   templateUrl: './newtable.component.html',

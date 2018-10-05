@@ -3,12 +3,10 @@
   [style.height.px]="height" 
   [ngStyle]="{'background-color': pageColor}">
   <h3>Click to edit the data</h3>
-  <table 
-    class="table table-bordered"
-    >
+  <table class="table table-bordered">
     <thead [ngStyle]="{'color':headerTxtColor,'background-color':headerBGColor}">
       <tr [ngStyle]="{'font-weight': fontWeight}">
-        <th scope="col">{{id}}</th>
+        <th scope="col">#</th>
         <th scope="col" 
           *ngFor="let header of headers" 
           [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 
@@ -26,11 +24,11 @@
       <tr 
         *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
         [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}" >
-        <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
-        <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
-        <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
-        <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
-        <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
+          <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
       </tr>
     </tbody>
   </table>
@@ -105,8 +103,22 @@
 </div>
 
 <div *ngIf="show == true">
-  <p>test test test</p>
+  <table id="example1" class="hot handsontable htRowHeaders htColumnHeaders">
+    <thead>
+      <tr>
+        <th scope="row">#</th>
+        <th scope="col" *ngFor="let header of headers">{{header.label}}</th>
+      </tr>
+    </thead>
+    <tbody [ngStyle]="{'color':tableTxtColor}" >
+      <tr *ngFor="let d of data ; let id = index;">
+        <th scope="row">{{id}}</th>
+        <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
+        <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
+        <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
+        <td contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
+      </tr> 
+    </tbody>
+  </table>
   <button mdbBtn rounded="true" color="default" outline="true" mdbWavesEffect (click)="show = false">Close</button>
 </div>
-
-

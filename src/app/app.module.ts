@@ -9,6 +9,7 @@ import { ColorPickerModule } from './color-picker/color-picker.module';
 import { NewtableComponent } from './newtable/newtable.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { HotTableModule } from '@handsontable/angular';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FilterPipe } from './filter.pipe';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     ColorPickerModule,
-    FormsModule
+    FormsModule,
+    HotTableModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
