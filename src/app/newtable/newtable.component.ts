@@ -16,8 +16,8 @@ export class NewtableComponent implements OnInit {
   private tableFontSize: number=14;
   private fontWeight: string="Normal";
   private headerAlignment: string="Left";
-  private degree: string="";
-  private thHeight: number;
+  degree: string="";
+  thHeight: number;
 
   // for color setting
   color: string="#ffecee";
@@ -43,7 +43,7 @@ export class NewtableComponent implements OnInit {
     { name: "Bold", value: "bold" }
   ]
 
-  @Input() data=[];
+  @Input() data;
   @Input() headers=[];
 
   constructor() {
@@ -133,8 +133,6 @@ export class NewtableComponent implements OnInit {
   verticalHeader($event) {
     this.degree = '(-45deg)';
     this.thHeight = 150;
-    console.log($event.bubbles);
   }
-
-
+  
 }

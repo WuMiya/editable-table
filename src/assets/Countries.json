@@ -71,7 +71,7 @@
     ]
   },{
     "title": "D country",
-    "desc": "testing",
+    "desc": "thing",
     "budget": 6000,
     "block_id": 0,
     "total_DIN_saved_kgs": 803.44,
@@ -85,7 +85,7 @@
     ]
   },{
     "title": "E country",
-    "desc": "testing",
+    "desc": "something",
     "budget": 9605,
     "block_id": 0,
     "total_DIN_saved_kgs": 5803.44,

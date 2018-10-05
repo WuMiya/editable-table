@@ -1,4 +1,4 @@
-<div class="display-section"
+<div class="display-section" 
   [style.width.px]="width" 
   [style.height.px]="height" 
   [ngStyle]="{'background-color': pageColor}">
@@ -24,7 +24,7 @@
     </thead>
     <tbody [ngStyle]="{'color':tableTxtColor}" >
       <tr 
-        *ngFor="let d of data; let id = index; let odd = odd;" 
+        *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
         [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}" >
         <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
         <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
@@ -37,6 +37,9 @@
 </div>
 
 <div class="edit-section"> 
+  <button mdbBtn rounded="true" color="default" outline="true" mdbWavesEffect (click)="show = true">Edit data</button>
+  <h3>Search by description</h3>
+  <input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString">
   <h3>Color</h3>
   <p>
     Header text
@@ -95,9 +98,15 @@
   </p>
   <div>Vertical text header
     <label class="switch verticalHeader">
-      Off
-      <input [(ngModel)]="degree" type="checkbox" (onClick)="verticalHeader($event)">
-      <span class="slider round"></span>On
+      <input [(ngModel)]="degree" type="checkbox" (change)="verticalHeader($event)">
+      <span class="slider round"></span>
     </label>
   </div>
 </div>
+
+<div *ngIf="show == true">
+  <p>test test test</p>
+  <button mdbBtn rounded="true" color="default" outline="true" mdbWavesEffect (click)="show = false">Close</button>
+</div>
+
+

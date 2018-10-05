@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ColorPickerModule } from './color-picker/color-picker.module';
 import { NewtableComponent } from './newtable/newtable.component';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewtableComponent
+    NewtableComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
