@@ -32,7 +32,8 @@
     <tbody [ngStyle]="{'color':tableTxtColor}" >
       <tr 
         *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
-        [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}" >
+        [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}"
+        (contextmenu)="onRightClick($event)" >
           <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
           <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'title', $event)">
@@ -151,4 +152,12 @@
     </tbody>
   </table>
   <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="show = false">Close</button>
+</div>
+
+<div *ngIf="rightClick">
+  <p>Copy row</p>
+  <p>Delete row</p>
+    Right clicked
+    {{nRightClicks}}
+    time(s).
 </div>

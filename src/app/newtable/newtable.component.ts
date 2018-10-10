@@ -144,5 +144,11 @@ export class NewtableComponent implements OnInit {
   //     this.translateDegree = "0%, 0%";
   //   }
   // }
-
+  nRightClicks = 0;
+  rightClick: boolean = false;
+  onRightClick() {
+    this.rightClick = true;
+    this.nRightClicks++;
+    return false;
+  }
 }
