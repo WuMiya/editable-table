@@ -38,7 +38,7 @@ export class NewtableComponent implements OnInit {
     { name: "Center", value: "center" },
     { name: "Right", value: "right" }
   ]
-  
+
   // font-weight options
   FWoptions = [
     { name: "Normal", value: "normal" },
@@ -75,9 +75,12 @@ export class NewtableComponent implements OnInit {
   // edit table field
   editValue(id: number, property: string, $event: any) {
     this.editField = $event.target.textContent;
-    if (this.editField !="") {
-      this.data[id][property] = this.editField;
-    }
+    this.data[id][property] = this.editField;
+  }
+
+  editHeaderValue(id: number, property: string, $event: any) {
+    this.editField = $event.target.textContent;
+    this.headers[id][property] = this.editField;
   }
 
   // edit width of the display section

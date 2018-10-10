@@ -15,9 +15,10 @@
       <tr [ngStyle]="{'font-weight': fontWeight}">
         <th scope="col">#</th>
         <th scope="col" 
-          *ngFor="let header of headers" 
+          *ngFor="let header of headers; let id = index" 
           [class.verticalHeader]="isVertical"
-          [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 'text-align': headerAlignment}">
+          [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 'text-align': headerAlignment}"
+          contenteditable="true" (keyup)="editHeaderValue(id, 'label', $event)">
             {{header.label}}
               <mdb-icon 
                 *ngIf="header.sortable" 
@@ -34,19 +35,19 @@
           <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
           <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'title', $event)">
-            {{d.title}}
+              {{d.title}}
           </td>
           <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'desc', $event)">
-            {{d.desc}}
+              {{d.desc}}
           </td>
           <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'budget', $event)">
-            {{d.budget}}
+              {{d.budget}}
           </td>
           <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
-            {{d.total_DIN_saved_kgs}}
+              {{d.total_DIN_saved_kgs}}
           </td>
       </tr>
     </tbody>
@@ -132,7 +133,10 @@
     <thead>
       <tr>
         <th scope="row">#</th>
-        <th scope="col" *ngFor="let header of headers">{{header.label}}</th>
+        <th scope="col" *ngFor="let header of headers; let id = index" 
+          contenteditable="true" (keyup)="editHeaderValue(id, 'label', $event)">
+            {{header.label}}
+        </th>
       </tr>
     </thead>
     <tbody [ngStyle]="{'color':tableTxtColor}" >
