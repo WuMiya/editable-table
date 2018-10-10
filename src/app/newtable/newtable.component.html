@@ -10,14 +10,14 @@
     </mdb-icon>
       Download data
   </div>
-  <table class="table table-bordered">
+  <table class="table-bordered">
     <thead [ngStyle]="{'color':headerTxtColor,'background-color':headerBGColor}">
       <tr [ngStyle]="{'font-weight': fontWeight}">
         <th scope="col">#</th>
         <th scope="col" 
           *ngFor="let header of headers" 
-          [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 
-            'text-align': headerAlignment, 'transform': 'rotate' + rotateDegree, 'height': thHeight}">
+          [class.verticalHeader]="isVertical"
+          [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 'text-align': headerAlignment}">
             {{header.label}}
               <mdb-icon 
                 *ngIf="header.sortable" 
@@ -32,10 +32,22 @@
         *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
         [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}" >
           <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+            contenteditable="true" (keyup)="editValue(id, 'title', $event)">
+            {{d.title}}
+          </td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+            contenteditable="true" (keyup)="editValue(id, 'desc', $event)">
+            {{d.desc}}
+          </td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+            contenteditable="true" (keyup)="editValue(id, 'budget', $event)">
+            {{d.budget}}
+          </td>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+            contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
+            {{d.total_DIN_saved_kgs}}
+          </td>
       </tr>
     </tbody>
   </table>
@@ -102,8 +114,8 @@
     <input value="tableFontSize" [(ngModel)]="tableFontSize" (keyup)="updateTableFontSize($event)">
   </p>
   <div>Vertical text header
-    <label class="switch verticalHeader">
-      <input [(ngModel)]="degree" type="checkbox" (change)="verticalHeader($event)">
+    <label class="switch">
+      <input type="checkbox" (change)="isVertical =! isVertical">
       <span class="slider round"></span>
     </label>
   </div>
@@ -116,7 +128,7 @@
 </div>
 
 <div *ngIf="show">
-  <table id="example1" class="hot handsontable htRowHeaders htColumnHeaders">
+  <table class="table w-auto ">
     <thead>
       <tr>
         <th scope="row">#</th>

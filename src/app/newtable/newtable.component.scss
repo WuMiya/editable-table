@@ -81,10 +81,20 @@ label {
     margin-bottom: 0px
 }
 
-// .vertical-header:after {
-//     content:'';
-//     padding-top:110%;
-//     display:inline-block;
-//     vertical-align:middle;
-// }
+.verticalHeader {
+    text-align:center;
+    white-space:nowrap;
+    transform-origin:50% 50%;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
 
+.verticalHeader:before {
+    content:'';
+    padding-top:100%;
+    display:inline-block;
+    vertical-align:middle;
+}

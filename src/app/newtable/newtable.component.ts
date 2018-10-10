@@ -16,10 +16,10 @@ export class NewtableComponent implements OnInit {
   private tableFontSize: number=14;
   private fontWeight: string="Normal";
   private headerAlignment: string="Left";
-  rotateDegree: string="";
-  thHeight: string="";
-  downloadabl:boolean = false;
-  translateDegree:string = "";
+  // rotateDegree: string="";
+  // thHeight: string="";
+  // downloadabl:boolean = false;
+  // translateDegree:string = "";
  
   // for color setting
   color: string="#ffecee";
@@ -38,7 +38,8 @@ export class NewtableComponent implements OnInit {
     { name: "Center", value: "center" },
     { name: "Right", value: "right" }
   ]
-
+  
+  // font-weight options
   FWoptions = [
     { name: "Normal", value: "normal" },
     { name: "Lighter", value: "lighter" },
@@ -129,16 +130,16 @@ export class NewtableComponent implements OnInit {
     return this.fontWeight;
   }
 
-  verticalHeader($event) {
-    if ($event.target.checked) {
-      this.rotateDegree = "(-90deg)";
-      // this.thHeight = "150px";
-      // this.translateDegree = "0%, -40%";
-    } else {
-      this.rotateDegree = "(0deg)";
-      // this.thHeight = "auto";
-      this.translateDegree = "0%, 0%";
-    }
-  }
+  // verticalHeader($event) {
+  //   if ($event.target.checked) {
+  //     this.rotateDegree = "(-90deg)";
+  //     this.thHeight = "150px";
+  //     this.translateDegree = "0%, -40%";
+  //   } else {
+  //     this.rotateDegree = "(0deg)";
+  //     this.thHeight = "auto";
+  //     this.translateDegree = "0%, 0%";
+  //   }
+  // }
 
 }
