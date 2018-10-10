@@ -17,13 +17,13 @@
         <th scope="col" 
           *ngFor="let header of headers" 
           [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 
-            'text-align': headerAlignment, 'transform': 'translate(0%, -40%)'+'rotate'+degree, 'height': thHeight+'px'}">
-          {{header.label}}
-            <mdb-icon 
-              *ngIf="header.sortable" 
-              icon="sort" 
-              (click)="sortBy(header)">
-            </mdb-icon>
+            'text-align': headerAlignment, 'transform': 'rotate' + rotateDegree, 'height': thHeight}">
+            {{header.label}}
+              <mdb-icon 
+                *ngIf="header.sortable" 
+                icon="sort" 
+                (click)="sortBy(header)">
+              </mdb-icon>
         </th>
       </tr>
     </thead>
@@ -115,7 +115,7 @@
   </div>
 </div>
 
-<div *ngIf="show == true">
+<div *ngIf="show">
   <table id="example1" class="hot handsontable htRowHeaders htColumnHeaders">
     <thead>
       <tr>

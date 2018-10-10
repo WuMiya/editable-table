@@ -16,9 +16,10 @@ export class NewtableComponent implements OnInit {
   private tableFontSize: number=14;
   private fontWeight: string="Normal";
   private headerAlignment: string="Left";
-  degree: string="";
-  thHeight: number;
+  rotateDegree: string="";
+  thHeight: string="";
   downloadabl:boolean = false;
+  translateDegree:string = "";
  
   // for color setting
   color: string="#ffecee";
@@ -129,8 +130,15 @@ export class NewtableComponent implements OnInit {
   }
 
   verticalHeader($event) {
-    this.degree = '(-45deg)';
-    this.thHeight = 150;
+    if ($event.target.checked) {
+      this.rotateDegree = "(-90deg)";
+      // this.thHeight = "150px";
+      // this.translateDegree = "0%, -40%";
+    } else {
+      this.rotateDegree = "(0deg)";
+      // this.thHeight = "auto";
+      this.translateDegree = "0%, 0%";
+    }
   }
 
 }
