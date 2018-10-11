@@ -1,10 +1,10 @@
 <div class="display-section" 
-  [style.width.px]="width" 
-  [style.height.px]="height" 
-  [ngStyle]="{'background-color': pageColor}"
-  (click)="disableContextMenu()" oncontextmenu="return false;">
+  [style.width.px]="child.width" 
+  [style.height.px]="child.height" 
+  [ngStyle]="{'background-color': child.pageColor}">
+  <!-- (click)="disableContextMenu()" oncontextmenu="return false;"> -->
   <h3>Click to edit the data</h3>
-  <div class="downloadLabel" *ngIf="downloadable">
+  <div class="downloadLabel" *ngIf="child.isDownloadable">
     <mdb-icon 
       icon="download" 
       (click)="sortBy(header)">
@@ -13,13 +13,13 @@
     <a href="https://www.google.com.au/"><span></span></a>
   </div>
   <table class="table-bordered">
-    <thead [ngStyle]="{'color':headerTxtColor,'background-color':headerBGColor}">
-      <tr [ngStyle]="{'font-weight': fontWeight}">
-        <th scope="col">#</th>
+    <thead [ngStyle]="{'color':child.headerTxtColor,'background-color':child.headerBGColor}">
+      <tr [ngStyle]="{'font-weight': child.fontWeight}">
+        <th scope="col" [ngStyle]="{'font-size':child.headerFontSize+'px', 'font-weight': child.fontWeight, 'text-align': child.headerAlignment}">#</th>
         <th scope="col" 
           *ngFor="let header of headers; let id = index" 
-          [class.verticalHeader]="isVertical"
-          [ngStyle]="{'font-size':headerFontSize+'px', 'font-weight': fontWeight, 'text-align': headerAlignment}"
+          [class.verticalHeader]="child.isVertical"
+          [ngStyle]="{'font-size':child.headerFontSize+'px', 'font-weight': child.fontWeight, 'text-align': child.headerAlignment}"
           contenteditable="true" (keyup)="editHeaderValue(id, 'label', $event)">
             {{header.label}}
               <mdb-icon 
@@ -30,105 +30,31 @@
         </th>
       </tr>
     </thead>
-    <tbody [ngStyle]="{'color':tableTxtColor}" >
+    <tbody [ngStyle]="{'color':child.tableTxtColor}" >
       <tr 
         *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
-        [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}"
-        (contextmenu)="onRightClick($event)" >
-          <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id+1}}</th>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+        [ngStyle]="{'background-color': odd ? child.color : child.alternateColor, 'text-align': child.textAlignment}">
+        <!-- (contextmenu)="onRightClick($event)" > -->
+          <th [ngStyle]="{'font-weight': child.fontWeight, 'font-size': child.tableFontSize+'px'}" scope="row">{{id+1}}</th>
+          <td [ngStyle]="{'font-weight': child.fontWeight, 'font-size': child.tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'title', $event)">
               {{d.title}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
-            contenteditable="true" (keyup)="editValue(id, 'desc', $event)">
+          <td [ngStyle]="{'font-weight': child.fontWeight, 'font-size': child.tableFontSize+'px'}" 
+            contenteditable="true" (keyup)="child.editValue(id, 'desc', $event)">
               {{d.desc}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+          <td [ngStyle]="{'font-weight': child.fontWeight, 'font-size': child.tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'budget', $event)">
               {{d.budget}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
+          <td [ngStyle]="{'font-weight': child.fontWeight, 'font-size': child.tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
               {{d.total_DIN_saved_kgs}}
           </td>
       </tr>
     </tbody>
   </table>
-</div>
-
-<div class="edit-section" (click)="disableContextMenu()" oncontextmenu="return false;"> 
-  <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="show = true">Edit data</button>
-  <h3>Search by description</h3>
-  <input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString">
-  <h3>Color</h3>
-  <p>
-    Header text
-    <input [(colorPicker)]="headerTxtColor" [style.background]="headerTxtColor" [cpPresetColors]="cpPresetColors" [value]="headerTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
-  </p>
-  <p>
-    Table text
-    <input [(colorPicker)]="tableTxtColor" [style.background]="tableTxtColor" [cpPresetColors]="cpPresetColors" [value]="tableTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
-  </p>
-  <p>
-    Header background
-    <input [(colorPicker)]="headerBGColor" [style.background]="headerBGColor" [cpPresetColors]="cpPresetColors" [value]="headerBGColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
-  </p>
-  <p>
-    Table background
-    <input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
-  </p>
-  <p>
-    Alternate background
-    <input [(colorPicker)]="alternateColor" [style.background]="alternateColor" [cpPresetColors]="cpPresetColors" [value]="alternateColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
-  </p>
-  <h3>Page Setting</h3>
-  <p>
-    Page Width (px) 
-    <input value="width" [(ngModel)]="width" (keyup)="updateWidth($event)">
-  </p>
-  <p>
-    Page Hight (px)
-    <input value="height" [(ngModel)]="height" (keyup)="updateHeight($event)">
-  </p>
-  <p>
-    Page background
-    <input [(colorPicker)]="pageColor" [style.background]="pageColor" [cpPresetColors]="cpPresetColors" [value]="pageColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
-  </p>
-  <h3>Font Setting</h3>
-  <p>Header alignment: 
-    <select (change)="headerAlignmentChange($event)">
-      <option *ngFor="let o of options">{{o.name}}</option>
-    </select>
-  </p>
-  <p>Text alignment: 
-    <select (change)="textAlignmentChange($event)">
-      <option *ngFor="let o of options">{{o.name}}</option>
-    </select>
-  </p>
-  <p>Font weight: 
-    <select (change)="fontWeightChange($event)">
-      <option *ngFor="let fw of FWoptions">{{fw.name}}</option>
-    </select>
-  </p>
-  <p>Header Font size: 
-    <input value="headerFontSize" [(ngModel)]="headerFontSize" (keyup)="updateHeaderFontSize($event)">
-  </p>
-  <p>Table Font size: 
-    <input value="tableFontSize" [(ngModel)]="tableFontSize" (keyup)="updateTableFontSize($event)">
-  </p>
-  <div>Vertical text header
-    <label class="switch">
-      <input type="checkbox" (change)="isVertical =! isVertical">
-      <span class="slider round"></span>
-    </label>
-  </div>
-  <div>Downloadable data
-      <label class="switch downloadable">
-        <input type="checkbox" (change)="downloadable =! downloadable">
-        <span class="slider round"></span>
-      </label>
-  </div>
 </div>
 
 <div *ngIf="show">
@@ -155,13 +81,10 @@
   <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="show = false">Close</button>
 </div>
 
-<!-- <div class="context-menu" *ngIf="rightClick" > -->
-<div class="context-menu" *ngIf="contextmenu==true" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+<!-- <div class="context-menu" *ngIf="contextmenu" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
   <ul>
-      <li (contextmenu)="onRightClick($event)">Copy row</li>
-      <li (contextmenu)="onRightClick($event)">Delete row</li>
+      <li *ngFor = "let item of menuItems" >{{item}}</li>
   </ul>
-    Right clicked
-    {{nRightClicks}}
-    time(s).
-</div>
+    Right clicked {{nRightClicks}} time(s).
+</div> -->
+<app-edit-section #child [data]="data" [headers]="headers"></app-edit-section>

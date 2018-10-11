@@ -8,7 +8,144 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
     // table data
-    data: any[];
+    data: any[] = [
+        {
+          "title": "A country",
+          "desc": "testing",
+          "budget": 10000,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 803.44,
+          "soil_saved_tonnes": 496.56,
+          "pesticide_saved_grams": 10249.49,
+          "kg_total_DIN": 12.45,
+          "total_soil": 20.14,
+          "gram_pesticide": 0.98,
+          "issues": "No",
+          "details": [
+              
+          ]
+        }, {
+          "title": "B country",
+          "desc": "thing",
+          "budget": 20000,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 1803.44,
+          "soil_saved_tonnes": 1496.56,
+          "pesticide_saved_grams": 10249.49,
+          "kg_total_DIN": 112.45,
+          "total_soil": 120.14,
+          "gram_pesticide": 10.98,
+          "issues": "No",
+          "details": [
+              {
+                  "title": "asm demo",
+                  "desc": "something",
+                  "budget": 10000,
+                  "block_id": 0,
+                  "total_DIN_saved_kgs": 803.44,
+                  "soil_saved_tonnes": 146.56,
+                  "pesticide_saved_grams": 1249.49,
+                  "kg_total_DIN": 12.45,
+                  "total_soil": 10.14,
+                  "gram_pesticide": 1.98,
+                  "issues": "No"
+              }
+          ]
+        },
+        {
+          "title":"C country",
+          "desc": "developed",
+          "budget": 30000,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 3803.44,
+          "soil_saved_tonnes": 3496.56,
+          "pesticide_saved_grams": 30249.49,
+          "kg_total_DIN": 312.45,
+          "total_soil": 320.14,
+          "gram_pesticide": 30.98,
+          "issues": "Yes",
+          "details": [
+              {
+                  "title":"robert project",
+                  "desc": "thing",
+                  "budget": 1500,
+                  "block_id": 3,
+                  "total_DIN_saved_kgs": 3803.44,
+                  "soil_saved_tonnes": 3496.56,
+                  "pesticide_saved_grams": 30249.49,
+                  "kg_total_DIN": 312.45,
+                  "total_soil": 320.14,
+                  "gram_pesticide": 30.98,
+                  "issues": "Yes"
+              }
+          ]
+        },{
+          "title": "D country",
+          "desc": "thing",
+          "budget": 6000,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 803.44,
+          "soil_saved_tonnes": 496.56,
+          "pesticide_saved_grams": 10249.49,
+          "kg_total_DIN": 12.45,
+          "total_soil": 20.14,
+          "gram_pesticide": 0.98,
+          "issues": "No",
+          "details": []
+        },{
+          "title": "E country",
+          "desc": "something",
+          "budget": 9605,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 5803.44,
+          "soil_saved_tonnes": 1496.56,
+          "pesticide_saved_grams": 186.3,
+          "kg_total_DIN": 127.45,
+          "total_soil": 0.14,
+          "gram_pesticide": 0.8,
+          "issues": "No",
+          "details": []
+        },{
+          "title": "F country",
+          "desc": "testing",
+          "budget": 3600,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 83.46,
+          "soil_saved_tonnes": 46.56,
+          "pesticide_saved_grams": 109.49,
+          "kg_total_DIN": 1.45,
+          "total_soil": 520.14,
+          "gram_pesticide": 10.98,
+          "issues": "No",
+          "details": []
+        },{
+          "title": "G country",
+          "desc": "testing",
+          "budget": 840,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 79.48,
+          "soil_saved_tonnes": 96.56,
+          "pesticide_saved_grams": 4049.49,
+          "kg_total_DIN": 12.45,
+          "total_soil": 20.14,
+          "gram_pesticide": 0.98,
+          "issues": "No",
+          "details": []
+        },{
+          "title": "H country",
+          "desc": "testing",
+          "budget": 6900,
+          "block_id": 0,
+          "total_DIN_saved_kgs": 36,
+          "soil_saved_tonnes": 496.56,
+          "pesticide_saved_grams": 10249.49,
+          "kg_total_DIN": 12.45,
+          "total_soil": 20.14,
+          "gram_pesticide": 0.98,
+          "issues": "No",
+          "details": []
+        }
+    ];
     headers: any[] = [{
         label: "title qweqwe",
         field: "title",
@@ -30,10 +167,10 @@ export class AppComponent {
     selectedRow: any[];
 
     constructor(private http: HttpClient) {
-        this.http.get('http://localhost:4200/assets/Countries.json')
-        .subscribe((data: any[]) => {
-            this.data = data;
-        });
+        // this.http.get('http://localhost:4200/assets/Countries.json')
+        // .subscribe((data: any[]) => {
+        //     this.data = data;
+        // });
     }
 
 }

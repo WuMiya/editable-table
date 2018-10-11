@@ -1,0 +1,74 @@
+<div class="edit-section"> 
+  <!-- (click)="disableContextMenu()" oncontextmenu="return false;">  -->
+    <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="show = true">Edit data</button>
+    <h3>Search by description</h3>
+    <input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString">
+    <h3>Color</h3>
+    <p>
+      Header text
+      <input [(colorPicker)]="headerTxtColor" [style.background]="headerTxtColor" [cpPresetColors]="cpPresetColors" [value]="headerTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+    </p>
+    <p>
+      Table text
+      <input [(colorPicker)]="tableTxtColor" [style.background]="tableTxtColor" [cpPresetColors]="cpPresetColors" [value]="tableTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+    </p>
+    <p>
+      Header background
+      <input [(colorPicker)]="headerBGColor" [style.background]="headerBGColor" [cpPresetColors]="cpPresetColors" [value]="headerBGColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+    </p>
+    <p>
+      Table background
+      <input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+    </p>
+    <p>
+      Alternate background
+      <input [(colorPicker)]="alternateColor" [style.background]="alternateColor" [cpPresetColors]="cpPresetColors" [value]="alternateColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+    </p>
+    <h3>Page Setting</h3>
+    <p>
+      Page Width (px) 
+      <input value="width" [(ngModel)]="width" (keyup)="updateWidth($event)">
+    </p>
+    <p>
+      Page Hight (px)
+      <input value="height" [(ngModel)]="height" (keyup)="updateHeight($event)">
+    </p>
+    <p>
+      Page background
+      <input [(colorPicker)]="pageColor" [style.background]="pageColor" [cpPresetColors]="cpPresetColors" [value]="pageColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+    </p>
+    <h3>Font Setting</h3>
+    <p>Header alignment: 
+      <select (change)="headerAlignmentChange($event)">
+        <option *ngFor="let o of options">{{o.name}}</option>
+      </select>
+    </p>
+    <p>Text alignment: 
+      <select (change)="textAlignmentChange($event)">
+        <option *ngFor="let o of options">{{o.name}}</option>
+      </select>
+    </p>
+    <p>Font weight: 
+      <select (change)="fontWeightChange($event)">
+        <option *ngFor="let fw of FWoptions">{{fw.name}}</option>
+      </select>
+    </p>
+    <p>Header Font size: 
+      <input value="headerFontSize" [(ngModel)]="headerFontSize" (keyup)="updateHeaderFontSize($event)">
+    </p>
+    <p>Table Font size: 
+      <input value="tableFontSize" [(ngModel)]="tableFontSize" (keyup)="updateTableFontSize($event)">
+    </p>
+    <div>Vertical text header
+      <label class="switch">
+        <input type="checkbox" (change)="isVertical =! isVertical">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div>Downloadable data
+        <label class="switch downloadable">
+          <input type="checkbox" (change)="isDownloadable =! isDownloadable">
+          <span class="slider round"></span>
+        </label>
+    </div>
+  </div>

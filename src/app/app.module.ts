@@ -10,12 +10,14 @@ import { NewtableComponent } from './newtable/newtable.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { HotTableModule } from '@handsontable/angular';
+import { EditSectionComponent } from './edit-section/edit-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewtableComponent,
-    FilterPipe
+    FilterPipe,
+    EditSectionComponent
   ],
   imports: [
     BrowserModule,
