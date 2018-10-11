@@ -1,7 +1,8 @@
 <div class="display-section" 
   [style.width.px]="width" 
   [style.height.px]="height" 
-  [ngStyle]="{'background-color': pageColor}">
+  [ngStyle]="{'background-color': pageColor}"
+  (click)="disableContextMenu()" oncontextmenu="return false;">
   <h3>Click to edit the data</h3>
   <div class="downloadLabel" *ngIf="downloadable">
     <mdb-icon 
@@ -34,7 +35,7 @@
         *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
         [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}"
         (contextmenu)="onRightClick($event)" >
-          <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id}}</th>
+          <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id+1}}</th>
           <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" 
             contenteditable="true" (keyup)="editValue(id, 'title', $event)">
               {{d.title}}
@@ -56,7 +57,7 @@
   </table>
 </div>
 
-<div class="edit-section"> 
+<div class="edit-section" (click)="disableContextMenu()" oncontextmenu="return false;"> 
   <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="show = true">Edit data</button>
   <h3>Search by description</h3>
   <input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString">
@@ -143,7 +144,7 @@
     </thead>
     <tbody [ngStyle]="{'color':tableTxtColor}" >
       <tr *ngFor="let d of data ; let id = index;">
-        <th scope="row">{{id}}</th>
+        <th scope="row">{{id+1}}</th>
         <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
         <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
         <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
@@ -154,9 +155,12 @@
   <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="show = false">Close</button>
 </div>
 
-<div *ngIf="rightClick">
-  <p>Copy row</p>
-  <p>Delete row</p>
+<!-- <div class="context-menu" *ngIf="rightClick" > -->
+<div class="context-menu" *ngIf="contextmenu==true" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+  <ul>
+      <li (contextmenu)="onRightClick($event)">Copy row</li>
+      <li (contextmenu)="onRightClick($event)">Delete row</li>
+  </ul>
     Right clicked
     {{nRightClicks}}
     time(s).

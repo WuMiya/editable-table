@@ -4,6 +4,11 @@
     overflow: auto;
 }
 
+.table-bordered thead th {
+    width: 160px;
+    height: auto;
+}
+
 .edit-section {
     position: relative;
     float: left;
@@ -105,4 +110,11 @@ label {
     height:100%;
     top:0;
     left: 0;
+}
+
+.context-menu {
+    background-color: #222;
+    position: absolute;
+    color: #fff;
+    padding: 30px 20px;
 }
