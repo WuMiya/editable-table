@@ -25,8 +25,8 @@
           [ngStyle]="{'font-size': this.child.headerFontSize+'px', 
             'font-weight': this.child.fontWeight, 
             'text-align': this.child.headerAlignment}"
-          contenteditable="true" (keyup)="editHeaderValue(id, 'label', $event)">
-            {{header.label}}
+            [attr.contenteditable]="this.child.contenteditable" (keyup)="editHeaderValue(id, 'label', $event)">
+            {{header.label}} 
               <mdb-icon 
                 *ngIf="header.sortable" 
                 icon="sort" 
@@ -42,19 +42,19 @@
         <!-- (contextmenu)="onRightClick($event)" > -->
           <th [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" scope="row">{{id+1}}</th>
           <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            contenteditable="true" (keyup)="editValue(id, 'title', $event)">
+            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'title', $event)">
               {{d.title}}
           </td>
           <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            contenteditable="true" (keyup)="editValue(id, 'desc', $event)">
+            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'desc', $event)">
               {{d.desc}}
           </td>
           <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            contenteditable="true" (keyup)="editValue(id, 'budget', $event)">
+            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'budget', $event)">
               {{d.budget}}
           </td>
           <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
+            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
               {{d.total_DIN_saved_kgs}}
           </td>
       </tr>
@@ -62,13 +62,13 @@
   </table>
 </div>
 
-<div *ngIf="this.child.show">
+<!-- <div *ngIf="this.child.show">
   <table class="table w-auto ">
     <thead>
       <tr>
         <th scope="row">#</th>
         <th scope="col" *ngFor="let header of headers; let id = index" 
-          contenteditable="true" (keyup)="editHeaderValue(id, 'label', $event)">
+          [attr.contenteditable]="this.child.contenteditable" (keyup)="editHeaderValue(id, 'label', $event)">
             {{header.label}}
         </th>
       </tr>
@@ -76,15 +76,15 @@
     <tbody [ngStyle]="{'color':tableTxtColor}" >
       <tr *ngFor="let d of data ; let id = index;">
         <th scope="row">{{id+1}}</th>
-        <td contenteditable="true" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
-        <td contenteditable="true" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
-        <td contenteditable="true" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
-        <td contenteditable="true" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
+        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
+        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
+        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
+        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
       </tr> 
     </tbody>
   </table>
   <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="this.child.show = false">Close</button>
-</div>
+</div> -->
 
 <!-- <div class="context-menu" *ngIf="contextmenu" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
   <ul>
