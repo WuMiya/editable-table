@@ -1,8 +1,11 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  ViewChild
 } from '@angular/core';
+
+import { EditSectionComponent } from '../edit-section/edit-section.component';
 
 @Component({
   selector: 'app-newtable',
@@ -17,13 +20,15 @@ export class NewtableComponent implements OnInit {
 
   @Input() data;
   @Input() headers = [];
-  @Input() headerTxtColor = this.headerTxtColor;
+  @ViewChild(EditSectionComponent) child: EditSectionComponent;
 
   constructor() {
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // console.log("child: ", this.child);
+  }
 
   // sortable table
   sortBy(header: any): void {
@@ -52,10 +57,19 @@ export class NewtableComponent implements OnInit {
     this.headers[id][property] = this.editField;
   }
 
-  onheaderTxtColorChange($event) {
-    let headerTxtColor = $event.color;
-    console.log(headerTxtColor);
+  // onheaderTxtColorChange($event) {
+  //   let headerTxtColor = $event.color;
+  //   console.log(headerTxtColor);
+  // }
+  widthUpdatedHandler($event) {
+    this.child.width = $event;
+    console.log(this.child.width)
   }
+
+  heightUpdatedHandler($event) {
+    this.child.height = $event;
+  }
+
 
   
 }

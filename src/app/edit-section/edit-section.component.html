@@ -49,7 +49,7 @@
       </select>
     </p>
     <p>Font weight: 
-      <select (change)="fontWeightChange($event)">
+      <select (change)="updateFontWeight($event)">
         <option *ngFor="let fw of FWoptions">{{fw.name}}</option>
       </select>
     </p>

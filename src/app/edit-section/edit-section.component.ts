@@ -14,15 +14,15 @@ import {
 })
 export class EditSectionComponent implements OnInit {
   // Sortable table
-  private sorted: boolean = false;
-  private editField: string = "";
-  private width: number = 1000;
-  private height: number = 480;
-  private textAlignment: string = "Left";
-  private headerFontSize: number = 16;
-  private tableFontSize: number = 14;
-  private fontWeight: string = "Normal";
-  private headerAlignment: string = "Left";
+  public sorted: boolean = false;
+  public editField: string = "";
+  public width: number = 1000;
+  public height: number = 480;
+  public textAlignment: string = "Left";
+  public headerFontSize: number = 16;
+  public tableFontSize: number = 14;
+  public fontWeight: string = "Normal";
+  public headerAlignment: string = "Left";
   // contextmenu = false;
   // contextmenuX = 0;
   // contextmenuY = 0;
@@ -69,12 +69,13 @@ export class EditSectionComponent implements OnInit {
   ]
 
   // menu items
-  menuItems = ["Copy row", "Delete row"]
+  // menuItems = ["Copy row", "Delete row"]
 
-  @Input() data;
-  @Input() headers = [];
+  // @Input() data;
+  // @Input() headers = [];
 
-  // @Output() widthUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() widthUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() heightUpdated: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
 
@@ -82,32 +83,32 @@ export class EditSectionComponent implements OnInit {
 
   ngOnInit() {}
 
-  // sortable table
-  sortBy(header: any): void {
-    let by: string = header.field;
+  // // sortable table
+  // sortBy(header: any): void {
+  //   let by: string = header.field;
 
-    this.data.sort((a: any, b: any) => {
-      if (a[by] < b[by]) {
-        return this.sorted ? 1 : -1;
-      }
-      if (a[by] > b[by]) {
-        return this.sorted ? -1 : 1;
-      }
-      return 0;
-    });
-    this.sorted = !this.sorted;
-  }
+  //   this.data.sort((a: any, b: any) => {
+  //     if (a[by] < b[by]) {
+  //       return this.sorted ? 1 : -1;
+  //     }
+  //     if (a[by] > b[by]) {
+  //       return this.sorted ? -1 : 1;
+  //     }
+  //     return 0;
+  //   });
+  //   this.sorted = !this.sorted;
+  // }
 
-  // edit table field
-  editValue(id: number, property: string, $event: any) {
-    this.editField = $event.target.textContent;
-    this.data[id][property] = this.editField;
-  }
+  // // edit table field
+  // editValue(id: number, property: string, $event: any) {
+  //   this.editField = $event.target.textContent;
+  //   this.data[id][property] = this.editField;
+  // }
 
-  editHeaderValue(id: number, property: string, $event: any) {
-    this.editField = $event.target.textContent;
-    this.headers[id][property] = this.editField;
-  }
+  // editHeaderValue(id: number, property: string, $event: any) {
+  //   this.editField = $event.target.textContent;
+  //   this.headers[id][property] = this.editField;
+  // }
 
   // edit width of the display section
   updateWidth($event) {
@@ -115,7 +116,9 @@ export class EditSectionComponent implements OnInit {
     if (this.width > 1600) {
       this.width = 1600;
     }
+    this.widthUpdated.emit(this.width);
   }
+
 
   // edit height of the display section
   updateHeight($event) {
@@ -123,6 +126,7 @@ export class EditSectionComponent implements OnInit {
     if (this.height > 2600) {
       this.height = 2600;
     }
+    this.heightUpdated.emit(this.height);
   }
 
   // handle text alignment
@@ -154,7 +158,7 @@ export class EditSectionComponent implements OnInit {
   }
 
   // handle table font weight
-  fontWeightChange(event: any) {
+  updateFontWeight(event: any) {
     this.fontWeight = event.target.value;
     return this.fontWeight;
   }
@@ -170,10 +174,5 @@ export class EditSectionComponent implements OnInit {
   // disableContextMenu() {
   //   this.contextmenu = false;
   // }
-  headerTxtColorSelected($event) {
-    
-    console.log($event);
-  }
-
   
 }
