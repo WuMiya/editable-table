@@ -2,7 +2,9 @@ import {
   Component,
   OnInit,
   Input,
-  ViewChild
+  Output,
+  ViewChild,
+  EventEmitter
 } from '@angular/core';
 
 import { EditSectionComponent } from '../edit-section/edit-section.component';
@@ -20,6 +22,8 @@ export class NewtableComponent implements OnInit {
 
   @Input() data;
   @Input() headers = [];
+  @Input() buttonText = [];
+  @Output() ctrlElementClicked: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(EditSectionComponent) child: EditSectionComponent;
 
   constructor() {
@@ -28,6 +32,10 @@ export class NewtableComponent implements OnInit {
 
   ngOnInit() {
     // console.log("child: ", this.child);
+  }
+
+  buttonClicked(d, ct): void {
+    this.ctrlElementClicked.emit({selected: d, context: ct})
   }
 
   // sortable table

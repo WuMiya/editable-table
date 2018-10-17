@@ -166,6 +166,8 @@ export class AppComponent {
 
     selectedRow: any[];
 
+    buttonText: string[]=["remove", "add"];
+
     constructor(private http: HttpClient) {
         // this.http.get('http://localhost:4200/assets/Countries.json')
         // .subscribe((data: any[]) => {
@@ -173,4 +175,35 @@ export class AppComponent {
         // });
     }
 
+    ctrlElementHandler($event) {
+        let selected = $event.selected;
+        let context = $event.context;
+
+        if (context === "remove") {
+            let foundIndex = -1;
+            this.data.forEach((d, index)=>{
+                if (d==selected) 
+                    foundIndex = index;
+            });
+
+            if (foundIndex != -1)
+                this.data.splice(foundIndex, 1);
+        } 
+
+        if (context === "add") {
+            this.data.push({
+                "title": "",
+                "desc": "",
+                "budget":"" ,
+                "block_id":"" ,
+                "total_DIN_saved_kgs": "",
+                "soil_saved_tonnes": "",
+                "pesticide_saved_grams": "",
+                "kg_total_DIN": "",
+                "total_soil": "",
+                "gram_pesticide": "",
+                "issues": ""});
+        }
+
+    }
 }

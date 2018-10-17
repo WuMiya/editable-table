@@ -28,7 +28,7 @@
             [attr.contenteditable]="this.child.contenteditable" (keyup)="editHeaderValue(id, 'label', $event)">
             {{header.label}} 
               <mdb-icon 
-                *ngIf="header.sortable" 
+                *ngIf="header.sortable && this.child.contenteditable" 
                 icon="sort" 
                 (click)="sortBy(header)">
               </mdb-icon>
@@ -56,6 +56,9 @@
           <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
             [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
               {{d.total_DIN_saved_kgs}}
+          </td>
+          <td *ngFor="let ct of buttonText">
+            <button mdbBtn color="elegant" rounded="true" size="sm" (click)="buttonClicked(d, ct)">{{ct}}</button>
           </td>
       </tr>
     </tbody>

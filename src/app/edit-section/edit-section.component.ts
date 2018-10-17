@@ -23,7 +23,7 @@ export class EditSectionComponent implements OnInit {
   public tableFontSize: number = 14;
   public fontWeight: string = "Normal";
   public headerAlignment: string = "Left";
-  contenteditable: boolean = false;
+  contenteditable: boolean = true;
   // contextmenu = false;
   // contextmenuX = 0;
   // contextmenuY = 0;
