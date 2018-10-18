@@ -13,7 +13,7 @@
       Download data
     <a href="https://www.google.com.au/"><span></span></a>
   </div>
-  <table class="table-bordered">
+  <table [ngClass]="(!this.child.isDynamicWidth)? 'table-bordered':'w-auto'">
     <thead [ngStyle]="{'color': this.child.headerTxtColor,'background-color': this.child.headerBGColor}">
       <tr [ngStyle]="{'font-weight': this.child.fontWeight}">
         <th scope="col" 
@@ -26,7 +26,7 @@
           [ngStyle]="{'font-size': this.child.headerFontSize+'px', 
             'font-weight': this.child.fontWeight, 
             'text-align': this.child.headerAlignment}"
-            [attr.contenteditable]="this.child.contenteditable" (change)="editHeaderValue(id, 'label', $event)">
+            [attr.contenteditable]="this.child.contenteditable">
             {{header.label}} 
               <mdb-icon 
                 *ngIf="header.sortable" 

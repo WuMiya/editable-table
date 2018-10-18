@@ -60,11 +60,18 @@
     <p>Table Font size: 
       <input value="tableFontSize" [(ngModel)]="tableFontSize" (keyup)="updateTableFontSize($event)">
     </p>
+    <h3>Table Properties</h3>
     <div>Vertical text header
       <label class="switch">
         <input type="checkbox" (change)="isVertical =! isVertical">
         <span class="slider round"></span>
       </label>
+    </div>
+    <div>Dynamic column width
+        <label class="switch">
+          <input type="checkbox" (change)="isDynamicWidth =! isDynamicWidth">
+          <span class="slider round"></span>
+        </label>
     </div>
     <div>Downloadable data
         <label class="switch downloadable">
