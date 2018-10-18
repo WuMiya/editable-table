@@ -3,7 +3,8 @@
   [style.height.px]="this.child.height" 
   [ngStyle]="{'background-color': this.child.pageColor}">
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;"> -->
-  <h3>Click to edit the data</h3>
+  <h3>Search by description</h3>
+    <p><input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString"></p>
   <div class="downloadLabel" *ngIf="this.child.isDownloadable">
     <mdb-icon 
       icon="download" 
@@ -25,10 +26,10 @@
           [ngStyle]="{'font-size': this.child.headerFontSize+'px', 
             'font-weight': this.child.fontWeight, 
             'text-align': this.child.headerAlignment}"
-            [attr.contenteditable]="this.child.contenteditable" (keyup)="editHeaderValue(id, 'label', $event)">
+            [attr.contenteditable]="this.child.contenteditable" (change)="editHeaderValue(id, 'label', $event)">
             {{header.label}} 
               <mdb-icon 
-                *ngIf="header.sortable && this.child.contenteditable" 
+                *ngIf="header.sortable" 
                 icon="sort" 
                 (click)="sortBy(header)">
               </mdb-icon>
@@ -37,64 +38,78 @@
     </thead>
     <tbody [ngStyle]="{'color': this.child.tableTxtColor}" >
       <tr 
-        *ngFor="let d of data | filter : 'desc' : this.child.searchString; let id = index; let odd = odd;" 
+        *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
         [ngStyle]="{'background-color': odd ? this.child.color : this.child.alternateColor, 'text-align': this.child.textAlignment}">
         <!-- (contextmenu)="onRightClick($event)" > -->
           <th [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" scope="row">{{id+1}}</th>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'title', $event)">
+          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
               {{d.title}}
           </td>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'desc', $event)">
+          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
               {{d.desc}}
           </td>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'budget', $event)">
+          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
               {{d.budget}}
           </td>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" 
-            [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">
+          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
               {{d.total_DIN_saved_kgs}}
-          </td>
-          <td *ngFor="let ct of buttonText">
-            <button mdbBtn color="elegant" rounded="true" size="sm" (click)="buttonClicked(d, ct)">{{ct}}</button>
           </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- <div *ngIf="this.child.show">
-  <table class="table w-auto ">
+<!-- contenteditable table -->
+<div *ngIf="this.child.contenteditable">
+  <table class="table-bordered">
     <thead>
       <tr>
         <th scope="row">#</th>
-        <th scope="col" *ngFor="let header of headers; let id = index" 
-          [attr.contenteditable]="this.child.contenteditable" (keyup)="editHeaderValue(id, 'label', $event)">
+        <th scope="col" *ngFor="let header of headers; let id = index"
+          contenteditable=true 
+          (keyup)="editValue(id, 'label', $event)" 
+          (blur)="updateTable(id, 'label', $event)">
             {{header.label}}
         </th>
       </tr>
     </thead>
-    <tbody [ngStyle]="{'color':tableTxtColor}" >
+    <tbody >
       <tr *ngFor="let d of data ; let id = index;">
         <th scope="row">{{id+1}}</th>
-        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'title', $event)">{{d.title}}</td>
-        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'desc', $event)">{{d.desc}}</td>
-        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'budget', $event)">{{d.budget}}</td>
-        <td [attr.contenteditable]="this.child.contenteditable" (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)">{{d.total_DIN_saved_kgs}}</td>
+        <td contenteditable=true (keyup)="editValue(id, 'title', $event)" 
+          (blur)="updateTable(id, 'title', $event)">
+            {{d.title}}
+        </td>
+        <td contenteditable=true (keyup)="editValue(id, 'desc', $event)"
+          (blur)="updateTable(id, 'desc', $event)">
+            {{d.desc}}
+        </td>
+        <td contenteditable=true (keyup)="editValue(id, 'budget', $event)"
+          (blur)="updateTable(id, 'budget', $event)">
+            {{d.budget}}
+        </td>
+        <td contenteditable=true (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)"
+          (blur)="updateTable(id, 'total_DIN_saved_kgs', $event)">
+            {{d.total_DIN_saved_kgs}}
+        </td>
+        <td *ngFor="let ct of buttonText">
+          <button mdbBtn color="elegant" rounded="true" size="sm" (click)="buttonClicked(d, ct)">{{ct}}</button>
+        </td>
       </tr> 
     </tbody>
   </table>
-  <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="this.child.show = false">Close</button>
-</div> -->
+  <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="this.child.contenteditable = false">Close</button>
+</div>
+<!-- End of contenteditable table -->
 
-<!-- <div class="context-menu" *ngIf="contextmenu" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+<!-- right click menu
+  <div class="context-menu" *ngIf="contextmenu" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
   <ul>
       <li *ngFor = "let item of menuItems" >{{item}}</li>
   </ul>
     Right clicked {{nRightClicks}} time(s).
-</div> -->
+</div>  -->
+
 <app-edit-section 
   (widthUpdated)="widthUpdatedHandler($event)"
   (heightUpdated)="heightUpdatedHandler($event)">

@@ -180,30 +180,12 @@ export class AppComponent {
         let context = $event.context;
 
         if (context === "remove") {
-            let foundIndex = -1;
-            this.data.forEach((d, index)=>{
-                if (d==selected) 
-                    foundIndex = index;
-            });
-
-            if (foundIndex != -1)
-                this.data.splice(foundIndex, 1);
+            this.data = this.data
+                .filter(d => d != selected)
         } 
 
         if (context === "add") {
-            this.data.push({
-                "title": "",
-                "desc": "",
-                "budget":"" ,
-                "block_id":"" ,
-                "total_DIN_saved_kgs": "",
-                "soil_saved_tonnes": "",
-                "pesticide_saved_grams": "",
-                "kg_total_DIN": "",
-                "total_soil": "",
-                "gram_pesticide": "",
-                "issues": ""});
+            this.data.push({});
         }
-
     }
 }

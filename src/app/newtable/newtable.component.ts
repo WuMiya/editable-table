@@ -35,7 +35,9 @@ export class NewtableComponent implements OnInit {
   }
 
   buttonClicked(d, ct): void {
-    this.ctrlElementClicked.emit({selected: d, context: ct})
+    if (this.child.contenteditable === true) {
+      this.ctrlElementClicked.emit({selected: d, context: ct});
+    } 
   }
 
   // sortable table
@@ -57,21 +59,24 @@ export class NewtableComponent implements OnInit {
   // edit table field
   editValue(id: number, property: string, $event: any) {
     this.editField = $event.target.textContent;
-    this.data[id][property] = this.editField;
   }
 
-  editHeaderValue(id: number, property: string, $event: any) {
-    this.editField = $event.target.textContent;
-    this.headers[id][property] = this.editField;
+  updateTable(id: number, property: string, $event: any) {
+    const editField = $event.target.textContent;
+    if(property == "label") {
+      this.headers[id][property] = editField;
+    } else {
+      this.data[id][property] = editField;
+    }
   }
 
-  // onheaderTxtColorChange($event) {
-  //   let headerTxtColor = $event.color;
-  //   console.log(headerTxtColor);
+  // editHeaderValue(id: number, property: string, $event: any) {
+  //   this.editField = $event.target.textContent;
+  //   this.headers[id][property] = this.editField;
   // }
+
   widthUpdatedHandler($event) {
     this.child.width = $event;
-    console.log(this.child.width)
   }
 
   heightUpdatedHandler($event) {

@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  Input,
   Output,
   EventEmitter
 } from '@angular/core';
@@ -16,14 +15,14 @@ export class EditSectionComponent implements OnInit {
   // Sortable table
   public sorted: boolean = false;
   public editField: string = "";
-  public width: number = 1000;
+  public width: number = 800;
   public height: number = 480;
   public textAlignment: string = "Left";
   public headerFontSize: number = 16;
   public tableFontSize: number = 14;
   public fontWeight: string = "Normal";
   public headerAlignment: string = "Left";
-  contenteditable: boolean = true;
+  contenteditable: boolean = false;
   // contextmenu = false;
   // contextmenuX = 0;
   // contextmenuY = 0;

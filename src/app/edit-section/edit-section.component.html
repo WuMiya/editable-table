@@ -1,9 +1,9 @@
 <div class="edit-section"> 
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;">  -->
-    <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="contenteditable = true">Edit table</button>
-    <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="contenteditable = false;">Lock table</button>
-    <h3>Search by description</h3>
-    <input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString">
+    <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect 
+      *ngIf="!contenteditable" (click)="contenteditable = true">
+      Edit table
+    </button>
     <h3>Color</h3>
     <p>
       Header text
