@@ -11,13 +11,16 @@ import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { HotTableModule } from '@handsontable/angular';
 import { EditSectionComponent } from './edit-section/edit-section.component';
+import { HomeComponent } from './home/home.component';
+import { TableService } from './tableServices/table.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewtableComponent,
     FilterPipe,
-    EditSectionComponent
+    EditSectionComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { EditSectionComponent } from './edit-section/edit-section.component';
     FormsModule,
     HotTableModule.forRoot()
   ],
-  providers: [],
+  providers: [TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

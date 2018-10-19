@@ -1,0 +1,14 @@
+<div>
+  <app-newtable 
+    (ctrlButtonClicked)="buttonClickedHandler($event)" 
+    [data]="data" 
+    [headers]="headers" 
+    [buttonText]="buttonText"
+    [width]="width"
+    [height]="height">
+  </app-newtable>
+  <app-edit-section 
+    (widthUpdated)="widthUpdatedHandler($event)"
+    (heightUpdated)="heightUpdatedHandler($event)">
+  </app-edit-section>
+</div>

@@ -3,11 +3,12 @@ import {
   OnInit,
   Input,
   Output,
-  ViewChild,
+  // ViewChild,
   EventEmitter
 } from '@angular/core';
 
-import { EditSectionComponent } from '../edit-section/edit-section.component';
+// import { EditSectionComponent } from '../edit-section/edit-section.component';
+// import { TableService } from '../table/table.service';
 
 @Component({
   selector: 'app-newtable',
@@ -20,24 +21,38 @@ export class NewtableComponent implements OnInit {
   // editable fields
   private editField: string = "";
 
-  @Input() data;
-  @Input() headers = [];
-  @Input() buttonText = [];
-  @Output() ctrlElementClicked: EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild(EditSectionComponent) child: EditSectionComponent;
+  @Output() ctrlButtonClicked: EventEmitter<any> = new EventEmitter<any>();
+  // @ViewChild(EditSectionComponent) child: EditSectionComponent;
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
-    // console.log("child: ", this.child);
+
   }
 
-  buttonClicked(d, ct): void {
-    if (this.child.contenteditable === true) {
-      this.ctrlElementClicked.emit({selected: d, context: ct});
-    } 
+  @Input() data=[];
+  @Input() headers=[];
+  @Input() buttonText=[];
+  @Input() width: number;
+  @Input() height: number;
+
+  buttonClicked(d, ct){
+    // if (this.child.contenteditable === true) {
+    //     let selected = d;
+    //     let context = ct;
+
+    //     if (context === "remove") {
+    //         this.data = this.data
+    //             .filter(d => d != selected)
+    //     } 
+
+    //     if (context === "add") {
+    //         this.data.push([]); 
+    //     }
+    // } 
+
+    this.ctrlButtonClicked.emit({selected: d, context: ct});
+
   }
 
   // sortable table
@@ -70,18 +85,13 @@ export class NewtableComponent implements OnInit {
     }
   }
 
-  // editHeaderValue(id: number, property: string, $event: any) {
-  //   this.editField = $event.target.textContent;
-  //   this.headers[id][property] = this.editField;
+  // widthUpdatedHandler($event) {
+  //   this.child.width = $event;
   // }
 
-  widthUpdatedHandler($event) {
-    this.child.width = $event;
-  }
-
-  heightUpdatedHandler($event) {
-    this.child.height = $event;
-  }
+  // heightUpdatedHandler($event) {
+  //   this.child.height = $event;
+  // }
 
 
   

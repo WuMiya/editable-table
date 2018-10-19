@@ -1,11 +1,11 @@
 <div class="display-section" 
-  [style.width.px]="this.child.width" 
-  [style.height.px]="this.child.height" 
-  [ngStyle]="{'background-color': this.child.pageColor}">
+  [style.width.px]="width" 
+  [style.height.px]="height" 
+  [ngStyle]="{'background-color': pageColor}">
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;"> -->
   <h3>Search by description</h3>
     <p><input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString"></p>
-  <div class="downloadLabel" *ngIf="this.child.isDownloadable">
+  <div class="downloadLabel" *ngIf="isDownloadable">
     <mdb-icon 
       icon="download" 
       (click)="sortBy(header)">
@@ -13,20 +13,20 @@
       Download data
     <a href="https://www.google.com.au/"><span></span></a>
   </div>
-  <table [ngClass]="(!this.child.isDynamicWidth)? 'table-bordered':'w-auto'">
-    <thead [ngStyle]="{'color': this.child.headerTxtColor,'background-color': this.child.headerBGColor}">
-      <tr [ngStyle]="{'font-weight': this.child.fontWeight}">
+  <table [ngClass]="(!isDynamicWidth)? 'table-bordered':'w-auto'">
+    <thead [ngStyle]="{'color': headerTxtColor,'background-color': headerBGColor}">
+      <tr [ngStyle]="{'font-weight': fontWeight}">
         <th scope="col" 
-          [ngStyle]="{'font-size': this.child.headerFontSize+'px', 
-            'font-weight': this.child.fontWeight, 
-            'text-align': this.child.headerAlignment}">#</th>
+          [ngStyle]="{'font-size': headerFontSize+'px', 
+            'font-weight': fontWeight, 
+            'text-align': headerAlignment}">#</th>
         <th scope="col" 
           *ngFor="let header of headers; let id = index" 
-          [class.verticalHeader]="this.child.isVertical"
-          [ngStyle]="{'font-size': this.child.headerFontSize+'px', 
-            'font-weight': this.child.fontWeight, 
-            'text-align': this.child.headerAlignment}"
-            [attr.contenteditable]="this.child.contenteditable">
+          [class.verticalHeader]="isVertical"
+          [ngStyle]="{'font-size': headerFontSize+'px', 
+            'font-weight': fontWeight, 
+            'text-align': headerAlignment}"
+            [attr.contenteditable]="contenteditable">
             {{header.label}} 
               <mdb-icon 
                 *ngIf="header.sortable" 
@@ -36,22 +36,22 @@
         </th>
       </tr>
     </thead>
-    <tbody [ngStyle]="{'color': this.child.tableTxtColor}" >
+    <tbody [ngStyle]="{'color': tableTxtColor}" >
       <tr 
         *ngFor="let d of data | filter : 'desc' : searchString; let id = index; let odd = odd;" 
-        [ngStyle]="{'background-color': odd ? this.child.color : this.child.alternateColor, 'text-align': this.child.textAlignment}">
+        [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}">
         <!-- (contextmenu)="onRightClick($event)" > -->
-          <th [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}" scope="row">{{id+1}}</th>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
+          <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id+1}}</th>
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
               {{d.title}}
           </td>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
               {{d.desc}}
           </td>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
               {{d.budget}}
           </td>
-          <td [ngStyle]="{'font-weight': this.child.fontWeight, 'font-size': this.child.tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
               {{d.total_DIN_saved_kgs}}
           </td>
       </tr>
@@ -60,7 +60,7 @@
 </div>
 
 <!-- contenteditable table -->
-<div *ngIf="this.child.contenteditable">
+<div *ngIf="contenteditable">
   <table class="table-bordered">
     <thead>
       <tr>
@@ -98,7 +98,7 @@
       </tr> 
     </tbody>
   </table>
-  <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="this.child.contenteditable = false">Close</button>
+  <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect (click)="contenteditable = false">Close</button>
 </div>
 <!-- End of contenteditable table -->
 
@@ -110,7 +110,8 @@
     Right clicked {{nRightClicks}} time(s).
 </div>  -->
 
+<!-- 
 <app-edit-section 
   (widthUpdated)="widthUpdatedHandler($event)"
   (heightUpdated)="heightUpdatedHandler($event)">
-</app-edit-section>
+</app-edit-section> -->
