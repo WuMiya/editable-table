@@ -5,10 +5,12 @@
     [headers]="headers" 
     [buttonText]="buttonText"
     [width]="width"
-    [height]="height">
+    [height]="height"
+    [isVertical]="isVertical">
   </app-newtable>
   <app-edit-section 
     (widthUpdated)="widthUpdatedHandler($event)"
-    (heightUpdated)="heightUpdatedHandler($event)">
+    (heightUpdated)="heightUpdatedHandler($event)"
+    (verticalUpdated)="toggleVerticalUpdated($event)" >
   </app-edit-section>
 </div>

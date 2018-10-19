@@ -34,6 +34,7 @@ export class EditSectionComponent implements OnInit {
   public tableTxtColor: string = "#333";
   public pageColor: string = "#fff";
   public recents: string[] = [this.color];
+  public isVertical: boolean = true;
 
   public cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A",
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
@@ -70,7 +71,8 @@ export class EditSectionComponent implements OnInit {
 
   @Output() widthUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() heightUpdated: EventEmitter<any> = new EventEmitter<any>();
-
+  @Output() verticalUpdated: EventEmitter<any> = new EventEmitter<any>();
+  
   constructor() {
 
   }
@@ -128,6 +130,11 @@ export class EditSectionComponent implements OnInit {
   updateFontWeight(event: any) {
     this.fontWeight = event.target.value;
     return this.fontWeight;
+  }
+
+  updateVertical(isVertical) {
+    this.isVertical =! isVertical;
+    this.verticalUpdated.emit(isVertical);
   }
 
   // onRightClick($event) {

@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   public tableTxtColor: string = "#333";
   public pageColor: string = "#fff";
   public recents: string[] = [this.color];
+  public isVertical:boolean;
 
   public cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A",
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
@@ -73,14 +74,14 @@ export class HomeComponent implements OnInit {
 
   ctrlElementHandler(selected, context) {
     if (this.contenteditable === true) {
-        if (context === "remove") {
-            this.data = this.data
-                .filter(d => d != selected)
-        } 
+      if (context === "remove") {
+        this.data = this.data
+            .filter(d => d != selected)
+      } 
 
-        if (context === "add") {
-            this.data.push([]); 
-        }
+      if (context === "add") {
+        this.data.push([]); 
+      }
     } 
   }
 
@@ -97,6 +98,10 @@ export class HomeComponent implements OnInit {
     if (this.height > 2600) {
       this.height = 2600;
     }
+  }
+
+  toggleVerticalUpdated($event) {
+    this.isVertical = $event;
   }
 
   // ctrlElementHandler(d, ct): void {
