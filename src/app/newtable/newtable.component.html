@@ -1,7 +1,6 @@
 <div class="display-section" 
-  [style.width.px]="width" 
-  [style.height.px]="height" 
-  [ngStyle]="{'background-color': pageColor}">
+  [ngStyle]="{'width': width+'px', 'height': height+'px', 'background-color': pageColor }" 
+>
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;"> -->
   <h3>Search by description</h3>
     <p><input type="text" name="searchString" placeholder="Search..." [(ngModel)]="searchString"></p>

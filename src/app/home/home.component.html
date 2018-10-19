@@ -6,11 +6,13 @@
     [buttonText]="buttonText"
     [width]="width"
     [height]="height"
-    [isVertical]="isVertical">
+    [isVertical]="isVertical"
+    [isDynamicWidth]="isDynamic">
   </app-newtable>
   <app-edit-section 
     (widthUpdated)="widthUpdatedHandler($event)"
     (heightUpdated)="heightUpdatedHandler($event)"
-    (verticalUpdated)="toggleVerticalUpdated($event)" >
+    (verticalUpdated)="toggleVerticalUpdated($event)"
+    (columnWidthUpdated)="toggleColumnUpdated($event)" >
   </app-edit-section>
 </div>

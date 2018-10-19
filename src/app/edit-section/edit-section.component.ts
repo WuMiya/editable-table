@@ -35,7 +35,7 @@ export class EditSectionComponent implements OnInit {
   public pageColor: string = "#fff";
   public recents: string[] = [this.color];
   public isVertical: boolean = true;
-
+  public isDynamic: boolean = true;
   public cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A",
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
   ];
@@ -72,29 +72,39 @@ export class EditSectionComponent implements OnInit {
   @Output() widthUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() heightUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() verticalUpdated: EventEmitter<any> = new EventEmitter<any>();
-  
+  @Output() columnWidthUpdated: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() {
 
   }
 
   ngOnInit() {}
 
+  setStyle(): Object {
+    return {
+      width: this.width-500 + 'px', 
+      height: this.height-200 + 'px',
+      "background-color": "pink",
+      "float": "right"
+    }
+  };
+
   // edit width of the display section
   updateWidth($event) {
-    // this.width = parseInt($event.target.value, 10);
-    // if (this.width > 1600) {
-    //   this.width = 1600;
-    // }
+    this.width = parseInt($event.target.value, 10);
+    if (this.width > 1600) {
+      this.width = 1600;
+    }
     this.widthUpdated.emit(this.width);
   }
 
 
   // edit height of the display section
   updateHeight($event) {
-    // this.height = parseInt($event.target.value, 10);
-    // if (this.height > 2600) {
-    //   this.height = 2600;
-    // }
+    this.height = parseInt($event.target.value, 10);
+    if (this.height > 2600) {
+      this.height = 2600;
+    }
     this.heightUpdated.emit(this.height);
   }
 
@@ -135,6 +145,11 @@ export class EditSectionComponent implements OnInit {
   updateVertical(isVertical) {
     this.isVertical =! isVertical;
     this.verticalUpdated.emit(isVertical);
+  }
+
+  updateColumnWidth(isDynamic) {
+    this.isDynamic =! isDynamic;
+    this.columnWidthUpdated.emit(isDynamic);
   }
 
   // onRightClick($event) {

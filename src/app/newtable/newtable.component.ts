@@ -36,6 +36,7 @@ export class NewtableComponent implements OnInit {
   @Input() width: number;
   @Input() height: number;
   @Input() isVertical: boolean;
+  @Input() isDynamicWidth: boolean;
 
   buttonClicked(d, ct){
     // if (this.child.contenteditable === true) {

@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   public pageColor: string = "#fff";
   public recents: string[] = [this.color];
   public isVertical:boolean;
-
+  public isDynamic:boolean;
   public cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A",
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
   ];
@@ -86,22 +86,20 @@ export class HomeComponent implements OnInit {
   }
 
   widthUpdatedHandler($event) {
-    this.width = parseInt($event, 10);
-    if (this.width > 1600) {
-      this.width = 1600;
-    }
+    this.width = $event;
   }
 
   // edit height of the display section
   heightUpdatedHandler($event) {
-    this.height = parseInt($event, 10);
-    if (this.height > 2600) {
-      this.height = 2600;
-    }
+    this.height = $event;
   }
 
   toggleVerticalUpdated($event) {
     this.isVertical = $event;
+  }
+
+  toggleColumnUpdated($event) {
+    this.isDynamic = $event;
   }
 
   // ctrlElementHandler(d, ct): void {

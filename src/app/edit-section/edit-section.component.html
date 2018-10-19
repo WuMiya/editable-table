@@ -1,6 +1,6 @@
 <div class="edit-section"> 
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;">  -->
-    <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect 
+    <button mdbBtn rounded="true" color="elegant" outline="true"
       *ngIf="!contenteditable" (click)="contenteditable = true">
       Edit table
     </button>
@@ -69,7 +69,7 @@
     </div>
     <div>Dynamic column width
         <label class="switch">
-          <input type="checkbox" (change)="isDynamicWidth =! isDynamicWidth">
+          <input type="checkbox" (change)="updateColumnWidth(isDynamic)">
           <span class="slider round"></span>
         </label>
     </div>
@@ -80,3 +80,5 @@
         </label>
     </div>
   </div>
+
+  <div [ngStyle]="setStyle()">test tset</div>
