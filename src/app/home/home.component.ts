@@ -72,17 +72,15 @@ export class HomeComponent implements OnInit {
     this.buttonText = this._tableService.getButtonText();
   }
 
-  ctrlElementHandler(selected, context) {
-    if (this.contenteditable === true) {
-      if (context === "remove") {
-        this.data = this.data
-            .filter(d => d != selected)
-      } 
-
-      if (context === "add") {
-        this.data.push([]); 
-      }
+  buttonClickedHandler($event) {
+    if ($event.context == "remove") {
+      this.data = this.data
+        .filter(d => d != $event.selected)
     } 
+
+    if ($event.context == "add") {
+      this.data.push([]); 
+    }
   }
 
   widthUpdatedHandler($event) {

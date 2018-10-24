@@ -12,7 +12,7 @@
       Download data
     <a href="https://www.google.com.au/"><span></span></a>
   </div>
-  <table [ngClass]="(!isDynamicWidth)? 'table-bordered':'w-auto'">
+  <table [ngClass]="(isDynamicWidth)? 'w-auto':'table-bordered'">
     <thead [ngStyle]="{'color': headerTxtColor,'background-color': headerBGColor}">
       <tr [ngStyle]="{'font-weight': fontWeight}">
         <th scope="col" 
@@ -25,7 +25,9 @@
           [ngStyle]="{'font-size': headerFontSize+'px', 
             'font-weight': fontWeight, 
             'text-align': headerAlignment}"
-          [attr.contenteditable]="contenteditable">
+          [attr.contenteditable]="contenteditable"
+          (keyup)="editValue(id, 'label', $event)" 
+          (blur)="updateTable(id, 'label', $event)">
             {{header.label}} 
               <mdb-icon 
                 *ngIf="header.sortable" 
@@ -41,16 +43,20 @@
         [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}">
         <!-- (contextmenu)="onRightClick($event)" > -->
           <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id+1}}</th>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
+              (keyup)="editValue(id, 'title', $event)" (blur)="updateTable(id, 'title', $event)">
               {{d.title}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
+              (keyup)="editValue(id, 'desc', $event)" (blur)="updateTable(id, 'desc', $event)">
               {{d.desc}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
+              (keyup)="editValue(id, 'budget', $event)" (blur)="updateTable(id, 'budget', $event)">
               {{d.budget}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
+              (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)" (blur)="updateTable(id, 'total_DIN_saved_kgs', $event)">
               {{d.total_DIN_saved_kgs}}
           </td>
       </tr>
@@ -75,16 +81,13 @@
     <tbody >
       <tr *ngFor="let d of data ; let id = index;">
         <th scope="row">{{id+1}}</th>
-        <td contenteditable=true (keyup)="editValue(id, 'title', $event)" 
-          (blur)="updateTable(id, 'title', $event)">
+        <td contenteditable=true (keyup)="editValue(id, 'title', $event)" (blur)="updateTable(id, 'title', $event)">
             {{d.title}}
         </td>
-        <td contenteditable=true (keyup)="editValue(id, 'desc', $event)"
-          (blur)="updateTable(id, 'desc', $event)">
+        <td contenteditable=true (keyup)="editValue(id, 'desc', $event)" (blur)="updateTable(id, 'desc', $event)">
             {{d.desc}}
         </td>
-        <td contenteditable=true (keyup)="editValue(id, 'budget', $event)"
-          (blur)="updateTable(id, 'budget', $event)">
+        <td contenteditable=true (keyup)="editValue(id, 'budget', $event)" (blur)="updateTable(id, 'budget', $event)">
             {{d.budget}}
         </td>
         <td contenteditable=true (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)"

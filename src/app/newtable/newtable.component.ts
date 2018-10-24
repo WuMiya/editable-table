@@ -6,7 +6,6 @@ import {
   // ViewChild,
   EventEmitter
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 // import { EditSectionComponent } from '../edit-section/edit-section.component';
 // import { TableService } from '../table/table.service';
@@ -88,15 +87,5 @@ export class NewtableComponent implements OnInit {
       this.data[id][property] = editField;
     }
   }
-
-  // widthUpdatedHandler($event) {
-  //   this.child.width = $event;
-  // }
-
-  // heightUpdatedHandler($event) {
-  //   this.child.height = $event;
-  // }
-
-
   
 }

@@ -4,7 +4,6 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-section',
@@ -80,15 +79,6 @@ export class EditSectionComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  setStyle(): Object {
-    return {
-      width: this.width-500 + 'px', 
-      height: this.height-200 + 'px',
-      "background-color": "pink",
-      "float": "right"
-    }
-  };
 
   // edit width of the display section
   updateWidth($event) {
