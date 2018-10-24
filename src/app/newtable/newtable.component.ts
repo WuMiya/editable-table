@@ -35,27 +35,24 @@ export class NewtableComponent implements OnInit {
   @Input() buttonText=[];
   @Input() width: number;
   @Input() height: number;
+  @Input() headerAlignment: string;
+  @Input() textAlignment: string;
+  @Input() headerFontSize: number;
+  @Input() tableFontSize: number;
+  @Input() fontWeight: string;
+  @Input() headerTxtColor: string;
+  @Input() tableTxtColor: string;
+  @Input() headerBGColor: string;
+  @Input() color: string;
+  @Input() alternateColor: string;
+  @Input() pageColor: string;
   @Input() isVertical: boolean;
   @Input() isDynamicWidth: boolean;
   @Input() contenteditable: boolean;
+  @Input() isDownloadable: boolean;
 
   buttonClicked(d, ct){
-    // if (this.child.contenteditable === true) {
-    //     let selected = d;
-    //     let context = ct;
-
-    //     if (context === "remove") {
-    //         this.data = this.data
-    //             .filter(d => d != selected)
-    //     } 
-
-    //     if (context === "add") {
-    //         this.data.push([]); 
-    //     }
-    // } 
-
     this.ctrlButtonClicked.emit({selected: d, context: ct});
-
   }
 
   // sortable table

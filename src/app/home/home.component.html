@@ -6,15 +6,26 @@
     [buttonText]="buttonText"
     [width]="width"
     [height]="height"
+    [headerAlignment]="headerAlignment"
+    [textAlignment]="textAlignment"
+    [headerFontSize]="headerFontSize"
+    [tableFontSize]="tableFontSize"
+    [fontWeight]="fontWeight"
+    [headerTxtColor]="headerTxtColor"
+    [tableTxtColor]="tableTxtColor"
+    [headerBGColor]="headerBGColor"
+    [color]="color"
+    [alternateColor]="alternateColor"
+    [pageColor]="pageColor"
     [isVertical]="isVertical"
     [isDynamicWidth]="isDynamic"
-    [contenteditable]="contenteditable">
+    [contenteditable]="contenteditable"
+    [isDownloadable]="isDownloadable">
   </app-newtable>
   <app-edit-section 
-    (widthUpdated)="widthUpdatedHandler($event)"
-    (heightUpdated)="heightUpdatedHandler($event)"
     (verticalUpdated)="toggleVerticalUpdated($event)"
     (columnWidthUpdated)="toggleColumnUpdated($event)"
-    (editableTableShowed)="toggleEditableTable($event)" >
+    (editableTableShowed)="toggleEditableTable($event)" 
+    (styleUpdated)="styleUpdatedHandler($event)">
   </app-edit-section>
 </div>

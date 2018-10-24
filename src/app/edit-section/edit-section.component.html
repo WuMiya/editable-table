@@ -1,85 +1,111 @@
 <div class="edit-section"> 
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;">  -->
     <button mdbBtn rounded="true" color="elegant" outline="true"
-      *ngIf="contenteditable == false" (click)="showEditableTable(contenteditable)">
+      *ngIf="contenteditable == false" (click)="updateStyle('contenteditable',$event.srcElement.value)">
       Edit table
     </button>
     <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect 
-      *ngIf="contenteditable == true" (click)="showEditableTable(contenteditable)">Close
+      *ngIf="contenteditable == true" (click)="updateStyle('contenteditable',$event.srcElement.value)">
+      Close
     </button>
     <h3>Color</h3>
     <p>
       Header text
-      <input [(colorPicker)]="headerTxtColor" [style.background]="headerTxtColor" [cpPresetColors]="cpPresetColors" [value]="headerTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+      <input 
+        [(colorPicker)]="headerTxtColor"  [style.background]="headerTxtColor" 
+        [cpPresetColors]="cpPresetColors"  [value]="headerTxtColor" 
+        [cpOutputFormat]="'hex'"  [recentChoose]="recents" 
+        (cpToggleChange)="updateStyle('headerTxtColor', headerTxtColor)" />
     </p>
     <p>
       Table text
-      <input [(colorPicker)]="tableTxtColor" [style.background]="tableTxtColor" [cpPresetColors]="cpPresetColors" [value]="tableTxtColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+      <input 
+        [(colorPicker)]="tableTxtColor" [style.background]="tableTxtColor" 
+        [cpPresetColors]="cpPresetColors" [value]="tableTxtColor" 
+        [cpOutputFormat]="'hex'" [recentChoose]="recents"
+        (cpToggleChange)="updateStyle('tableTxtColor', tableTxtColor)" />
     </p>
     <p>
       Header background
-      <input [(colorPicker)]="headerBGColor" [style.background]="headerBGColor" [cpPresetColors]="cpPresetColors" [value]="headerBGColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+      <input 
+        [(colorPicker)]="headerBGColor" [style.background]="headerBGColor" 
+        [cpPresetColors]="cpPresetColors" [value]="headerBGColor" 
+        [cpOutputFormat]="'hex'" [recentChoose]="recents"
+        (cpToggleChange)="updateStyle('headerBGColor', headerBGColor)" />
     </p>
     <p>
       Table background
-      <input [(colorPicker)]="color" [style.background]="color" [cpPresetColors]="cpPresetColors" [value]="color" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+      <input 
+        [(colorPicker)]="color" [style.background]="color" 
+        [cpPresetColors]="cpPresetColors" [value]="color" 
+        [cpOutputFormat]="'hex'" [recentChoose]="recents"
+        (cpToggleChange)="updateStyle('color', color)" />
     </p>
     <p>
       Alternate background
-      <input [(colorPicker)]="alternateColor" [style.background]="alternateColor" [cpPresetColors]="cpPresetColors" [value]="alternateColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+      <input 
+        [(colorPicker)]="alternateColor" [style.background]="alternateColor" 
+        [cpPresetColors]="cpPresetColors" [value]="alternateColor" 
+        [cpOutputFormat]="'hex'" [recentChoose]="recents"
+        (cpToggleChange)="updateStyle('alternateColor', alternateColor)" />
     </p>
     <h3>Page Setting</h3>
     <p>
       Page Width (px) 
-      <input value="width" [(ngModel)]="width" (keyup)="updateWidth($event)">
+      <!-- <input [value]="width" (keyup.enter)="updateWidth($event)"> -->
+      <input [value]="width" (keyup.enter)="updateStyle('width', $event.srcElement.value)">
     </p>
     <p>
       Page Hight (px)
-      <input value="height" [(ngModel)]="height" (keyup)="updateHeight($event)">
+      <input [value]="height" (keyup.enter)="updateStyle('height', $event.srcElement.value)">
     </p>
     <p>
       Page background
-      <input [(colorPicker)]="pageColor" [style.background]="pageColor" [cpPresetColors]="cpPresetColors" [value]="pageColor" [cpOutputFormat]="'hex'" [recentChoose]="recents"/>
+      <input 
+        [(colorPicker)]="pageColor" [style.background]="pageColor" 
+        [cpPresetColors]="cpPresetColors" [value]="pageColor" 
+        [cpOutputFormat]="'hex'" [recentChoose]="recents"
+        (cpToggleChange)="updateStyle('pageColor', pageColor)" />
     </p>
     <h3>Font Setting</h3>
     <p>Header alignment: 
-      <select (change)="headerAlignmentChange($event)">
+      <select (change)="updateStyle('headerAlignment', $event.srcElement.value)">
         <option *ngFor="let o of options">{{o.name}}</option>
       </select>
     </p>
     <p>Text alignment: 
-      <select (change)="textAlignmentChange($event)">
+      <select (change)="updateStyle('textAlignment', $event.srcElement.value)">
         <option *ngFor="let o of options">{{o.name}}</option>
       </select>
     </p>
     <p>Font weight: 
-      <select (change)="updateFontWeight($event)">
+      <select (change)="updateStyle('fontWeight', $event.srcElement.value)">
         <option *ngFor="let fw of FWoptions">{{fw.name}}</option>
       </select>
     </p>
     <p>Header Font size: 
-      <input value="headerFontSize" [(ngModel)]="headerFontSize" (keyup)="updateHeaderFontSize($event)">
+      <input value="headerFontSize" [(ngModel)]="headerFontSize" (keyup)="updateStyle('headerFontSize', $event.srcElement.value)">
     </p>
     <p>Table Font size: 
-      <input value="tableFontSize" [(ngModel)]="tableFontSize" (keyup)="updateTableFontSize($event)">
+      <input value="tableFontSize" [(ngModel)]="tableFontSize" (keyup)="updateStyle('tableFontSize', $event.srcElement.value)">
     </p>
     <h3>Table Properties</h3>
     <div>Vertical text header
       <label class="switch">
-        <input type="checkbox" (change)="updateVertical(isVertical)">
+        <input type="checkbox" (change)="updateStyle('isVertical',$event.srcElement.value)">
         <span class="slider round"></span>
       </label>
     </div>
     <div>Dynamic column width
-        <label class="switch">
-          <input type="checkbox" (change)="updateColumnWidth(isDynamic)">
-          <span class="slider round"></span>
-        </label>
+      <label class="switch">
+        <input type="checkbox" (change)="updateStyle('isDynamic',$event.srcElement.value)">
+        <span class="slider round"></span>
+      </label>
     </div>
     <div>Downloadable data
-        <label class="switch downloadable">
-          <input type="checkbox" (change)="isDownloadable =! isDownloadable">
-          <span class="slider round"></span>
-        </label>
+      <label class="switch downloadable">
+        <input type="checkbox" (change)="updateStyle('isDownloadable',$event.srcElement.value)">
+        <span class="slider round"></span>
+      </label>
     </div>
   </div>

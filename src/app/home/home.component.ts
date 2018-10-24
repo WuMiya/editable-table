@@ -28,8 +28,9 @@ export class HomeComponent implements OnInit {
   public tableTxtColor: string = "#333";
   public pageColor: string = "#fff";
   public recents: string[] = [this.color];
-  public isVertical:boolean;
-  public isDynamic:boolean;
+  public isDownloadable: boolean;
+  public isVertical: boolean;
+  public isDynamic: boolean;
   public cpPresetColors: any[] = ["#ea4256", "#ffa500", "#ffc966", "#f67d3b", "#43e5fd", "#20a5e6", "#1F917A", "#8B572A",
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
   ];
@@ -79,7 +80,84 @@ export class HomeComponent implements OnInit {
     } 
 
     if ($event.context == "add") {
-      this.data.push([]); 
+      const index = this.data.findIndex( d => d === $event.selected)
+      this.data.splice(index+1, 0, []); 
+    }
+  }
+
+  styleUpdatedHandler($event) {
+    if($event.type =="width") {
+      this.width = $event.value;
+      if (this.width > 1600) {
+        this.width = 1600;
+      }
+    } 
+
+    if($event.type =="height") {
+      this.height = $event.value;
+      if (this.width > 2600) {
+        this.width = 2600;
+      } 
+    }
+
+    if($event.type =="headerAlignment") {
+      this.headerAlignment = $event.value;
+    }
+
+    if($event.type =="textAlignment") {
+      this.textAlignment = $event.value;
+    }
+
+    if($event.type =="headerFontSize") {
+      this.headerFontSize = $event.value;
+    }
+
+    if($event.type =="tableFontSize") {
+      this.tableFontSize = $event.value;
+    }
+
+    if($event.type =="fontWeight") {
+      this.fontWeight = $event.value;
+    }
+    
+    if($event.type =="headerTxtColor") {
+      this.headerTxtColor = $event.value;
+    }
+
+    if($event.type =="tableTxtColor") {
+      this.tableTxtColor = $event.value;
+    }
+
+    if($event.type =="headerBGColor") {
+      this.headerBGColor = $event.value;
+    }
+
+    if($event.type =="color") {
+      this.color = $event.value;
+    }
+
+    if($event.type =="alternateColor") {
+      this.alternateColor = $event.value;
+    }
+
+    if($event.type =="pageColor") {
+      this.pageColor = $event.value;
+    }
+    
+    if($event.type =="isDownloadable") {
+      this.isDownloadable =! this.isDownloadable ;
+    }
+    
+    if($event.type =="isVertical") {
+      this.isVertical =! this.isVertical ;
+    }
+
+    if($event.type =="isDynamic") {
+      this.isDynamic =! this.isDynamic ;
+    }
+
+    if($event.type =="contenteditable") {
+      this.contenteditable =! this.contenteditable ;
     }
   }
 
