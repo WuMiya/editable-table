@@ -6,6 +6,7 @@ import {
   // ViewChild,
   EventEmitter
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 // import { EditSectionComponent } from '../edit-section/edit-section.component';
 // import { TableService } from '../table/table.service';
@@ -37,6 +38,7 @@ export class NewtableComponent implements OnInit {
   @Input() height: number;
   @Input() isVertical: boolean;
   @Input() isDynamicWidth: boolean;
+  @Input() contenteditable: boolean;
 
   buttonClicked(d, ct){
     // if (this.child.contenteditable === true) {

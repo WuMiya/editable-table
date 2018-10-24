@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-section',
@@ -73,6 +73,7 @@ export class EditSectionComponent implements OnInit {
   @Output() heightUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() verticalUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() columnWidthUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() editableTableShowed: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
 
@@ -150,6 +151,11 @@ export class EditSectionComponent implements OnInit {
   updateColumnWidth(isDynamic) {
     this.isDynamic =! isDynamic;
     this.columnWidthUpdated.emit(isDynamic);
+  }
+
+  showEditableTable(contenteditable) {
+    this.contenteditable =! contenteditable;
+    this.editableTableShowed.emit(this.contenteditable);
   }
 
   // onRightClick($event) {

@@ -7,12 +7,14 @@
     [width]="width"
     [height]="height"
     [isVertical]="isVertical"
-    [isDynamicWidth]="isDynamic">
+    [isDynamicWidth]="isDynamic"
+    [contenteditable]="contenteditable">
   </app-newtable>
   <app-edit-section 
     (widthUpdated)="widthUpdatedHandler($event)"
     (heightUpdated)="heightUpdatedHandler($event)"
     (verticalUpdated)="toggleVerticalUpdated($event)"
-    (columnWidthUpdated)="toggleColumnUpdated($event)" >
+    (columnWidthUpdated)="toggleColumnUpdated($event)"
+    (editableTableShowed)="toggleEditableTable($event)" >
   </app-edit-section>
 </div>

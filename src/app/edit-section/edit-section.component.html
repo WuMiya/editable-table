@@ -1,8 +1,11 @@
 <div class="edit-section"> 
   <!-- (click)="disableContextMenu()" oncontextmenu="return false;">  -->
     <button mdbBtn rounded="true" color="elegant" outline="true"
-      *ngIf="!contenteditable" (click)="contenteditable = true">
+      *ngIf="contenteditable == false" (click)="showEditableTable(contenteditable)">
       Edit table
+    </button>
+    <button mdbBtn rounded="true" color="elegant" outline="true" mdbWavesEffect 
+      *ngIf="contenteditable == true" (click)="showEditableTable(contenteditable)">Close
     </button>
     <h3>Color</h3>
     <p>

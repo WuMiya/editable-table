@@ -102,6 +102,10 @@ export class HomeComponent implements OnInit {
     this.isDynamic = $event;
   }
 
+  toggleEditableTable($event) {
+    this.contenteditable = $event;
+  }
+
   // ctrlElementHandler(d, ct): void {
   //   if (this.contenteditable === true) {
   //       let selected = d;
