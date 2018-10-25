@@ -1,5 +1,5 @@
 <div>
-  <app-newtable 
+  <app-table 
     (ctrlButtonClicked)="buttonClickedHandler($event)" 
     [data]="data" 
     [headers]="headers" 
@@ -21,8 +21,10 @@
     [isDynamicWidth]="isDynamic"
     [contenteditable]="contenteditable"
     [isDownloadable]="isDownloadable">
-  </app-newtable>
+  </app-table>
   <app-edit-section 
-    (styleUpdated)="styleUpdatedHandler($event)">
+    (styleUpdated)="styleUpdatedHandler($event)"
+    [options] = "options"
+    [FWoptions]= "FWoptions">
   </app-edit-section>
 </div>

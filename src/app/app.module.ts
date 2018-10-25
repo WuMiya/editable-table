@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ColorPickerModule } from './color-picker/color-picker.module';
-import { NewtableComponent } from './newtable/newtable.component';
+import { TableComponent } from './table/table.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { HotTableModule } from '@handsontable/angular';
@@ -17,7 +17,7 @@ import { TableService } from './tableServices/table.service';
 @NgModule({
   declarations: [
     AppComponent,
-    NewtableComponent,
+    TableComponent,
     FilterPipe,
     EditSectionComponent,
     HomeComponent

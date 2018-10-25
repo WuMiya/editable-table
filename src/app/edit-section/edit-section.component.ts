@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  Input,
   Output,
   EventEmitter
 } from '@angular/core';
@@ -39,36 +40,8 @@ export class EditSectionComponent implements OnInit {
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
   ];
   public editType: string="";
-
-  options = [{
-      name: "Left",
-      value: "left"
-    },
-    {
-      name: "Center",
-      value: "center"
-    },
-    {
-      name: "Right",
-      value: "right"
-    }
-  ]
-
-  // font-weight options
-  FWoptions = [{
-      name: "Normal",
-      value: "normal"
-    },
-    {
-      name: "Lighter",
-      value: "lighter"
-    },
-    {
-      name: "Bold",
-      value: "bold"
-    }
-  ]
-
+  @Input() options;
+  @Input() FWoptions;
   // @Output() widthUpdated: EventEmitter<any> = new EventEmitter<any>();
   // @Output() heightUpdated: EventEmitter<any> = new EventEmitter<any>();
   // @Output() verticalUpdated: EventEmitter<any> = new EventEmitter<any>();

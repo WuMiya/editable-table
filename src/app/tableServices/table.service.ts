@@ -173,4 +173,38 @@ export class TableService {
   getButtonText() {
     return ["remove", "add"];
   }
+
+  getOptions() {
+    return [
+      {
+        name: "Left",
+        value: "left"
+      },
+      {
+        name: "Center",
+        value: "center"
+      },
+      {
+        name: "Right",
+        value: "right"
+      }
+    ]
+  }
+
+  getFWoptions() {
+    return [
+      {
+        name: "Normal",
+        value: "normal"
+      },
+      {
+        name: "Lighter",
+        value: "lighter"
+      },
+      {
+        name: "Bold",
+        value: "bold"
+      }
+    ]
+  }
 }

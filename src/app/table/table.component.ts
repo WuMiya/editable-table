@@ -11,11 +11,11 @@ import {
 // import { TableService } from '../table/table.service';
 
 @Component({
-  selector: 'app-newtable',
-  templateUrl: './newtable.component.html',
-  styleUrls: ['./newtable.component.scss']
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
-export class NewtableComponent implements OnInit {
+export class TableComponent implements OnInit {
   // Sortable table
   private sorted: boolean = false;
   // editable fields

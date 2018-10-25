@@ -10,7 +10,8 @@ export class HomeComponent implements OnInit {
   public data=[];
   public headers = [];
   public buttonText = [];
-
+  public options = [];
+  public FWoptions = [];
   public sorted: boolean = false;
   public editField: string = "";
   public width: number = 800;
@@ -35,35 +36,6 @@ export class HomeComponent implements OnInit {
     "#000000", "#4A4A4A", "#ffffff", "#9B9B9B"
   ];
 
-  options = [{
-      name: "Left",
-      value: "left"
-    },
-    {
-      name: "Center",
-      value: "center"
-    },
-    {
-      name: "Right",
-      value: "right"
-    }
-  ]
-
-  // font-weight options
-  FWoptions = [{
-      name: "Normal",
-      value: "normal"
-    },
-    {
-      name: "Lighter",
-      value: "lighter"
-    },
-    {
-      name: "Bold",
-      value: "bold"
-    }
-  ]
-
   constructor(private _tableService: TableService) {}
 
   ngOnInit() {
@@ -71,6 +43,8 @@ export class HomeComponent implements OnInit {
     this.data = this._tableService.getTableData();
     this.headers = this._tableService.getHeaders();
     this.buttonText = this._tableService.getButtonText();
+    this.options = this._tableService.getOptions();
+    this.FWoptions = this._tableService.getFWoptions();
   }
 
   buttonClickedHandler($event) {
