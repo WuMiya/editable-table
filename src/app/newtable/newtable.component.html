@@ -24,10 +24,7 @@
           [class.verticalHeader]="isVertical"
           [ngStyle]="{'font-size': headerFontSize+'px', 
             'font-weight': fontWeight, 
-            'text-align': headerAlignment}"
-          [attr.contenteditable]="contenteditable"
-          (keyup)="editValue(id, 'label', $event)" 
-          (blur)="updateTable(id, 'label', $event)">
+            'text-align': headerAlignment}">
             {{header.label}} 
               <mdb-icon 
                 *ngIf="header.sortable" 
@@ -43,20 +40,16 @@
         [ngStyle]="{'background-color': odd ? color : alternateColor, 'text-align': textAlignment}">
         <!-- (contextmenu)="onRightClick($event)" > -->
           <th [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" scope="row">{{id+1}}</th>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
-              (keyup)="editValue(id, 'title', $event)" (blur)="updateTable(id, 'title', $event)">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}">
               {{d.title}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
-              (keyup)="editValue(id, 'desc', $event)" (blur)="updateTable(id, 'desc', $event)">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" >
               {{d.desc}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
-              (keyup)="editValue(id, 'budget', $event)" (blur)="updateTable(id, 'budget', $event)">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" >
               {{d.budget}}
           </td>
-          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" [attr.contenteditable]="contenteditable"
-              (keyup)="editValue(id, 'total_DIN_saved_kgs', $event)" (blur)="updateTable(id, 'total_DIN_saved_kgs', $event)">
+          <td [ngStyle]="{'font-weight': fontWeight, 'font-size': tableFontSize+'px'}" >
               {{d.total_DIN_saved_kgs}}
           </td>
       </tr>

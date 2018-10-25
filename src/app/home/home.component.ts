@@ -166,35 +166,19 @@ export class HomeComponent implements OnInit {
   }
 
   // edit height of the display section
-  heightUpdatedHandler($event) {
-    this.height = $event;
-  }
+  // heightUpdatedHandler($event) {
+  //   this.height = $event;
+  // }
 
-  toggleVerticalUpdated($event) {
-    this.isVertical = $event;
-  }
+  // toggleVerticalUpdated($event) {
+  //   this.isVertical = $event;
+  // }
 
-  toggleColumnUpdated($event) {
-    this.isDynamic = $event;
-  }
+  // toggleColumnUpdated($event) {
+  //   this.isDynamic = $event;
+  // }
 
-  toggleEditableTable($event) {
-    this.contenteditable = $event;
-  }
-
-  // ctrlElementHandler(d, ct): void {
-  //   if (this.contenteditable === true) {
-  //       let selected = d;
-  //       let context = ct;
-
-  //       if (context === "remove") {
-  //           this.data = this.data
-  //               .filter(d => d != selected)
-  //       } 
-
-  //       if (context === "add") {
-  //           this.data.push([]); 
-  //       }
-  //   } 
+  // toggleEditableTable($event) {
+  //   this.contenteditable = $event;
   // }
 }
